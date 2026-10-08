@@ -12,12 +12,12 @@
 [hidden]{display:none!important}
 /* Layout: dark "control room" — full-bleed canvas hero, terminal on the right, then a live work grid that previews each build in device frames. Single dark look by choice. */
 :root{
-  --ink:#06080d;
-  --panel:#0c1018;
-  --panel-2:#111724;
-  --line:#1c2433;
+  --ink:#151b28;
+  --panel:#1c2333;
+  --panel-2:#232b3d;
+  --line:#2f394d;
   --text:#e8edf6;
-  --muted:#8792a6;
+  --muted:#9aa5b8;
   --signal:#4de2ea;      /* electric cyan */
   --heat:#ffb24a;        /* warm amber */
   --violet:#8b7bff;
@@ -47,7 +47,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* nav */
 header.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-header.nav.solid{background:rgba(6,8,13,.78);backdrop-filter:blur(14px);border-color:var(--line)}
+header.nav.solid{background:rgba(21,27,40,.82);backdrop-filter:blur(14px);border-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em}
 .logo-mark{width:30px;height:30px;display:grid;place-items:center;border:1.5px solid var(--signal);border-radius:8px;font-family:var(--mono);font-size:13px;color:var(--signal);position:relative;overflow:hidden}
@@ -98,7 +98,7 @@ h1 .line:nth-child(3) span{animation-delay:.24s}
 .stat span{font-size:13px;color:var(--muted)}
 
 /* terminal */
-.term{background:rgba(12,16,24,.86);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(77,226,234,.06);transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);transition:transform .6s;animation:floaty 7s ease-in-out infinite}
+.term{background:rgba(28,35,51,.9);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(77,226,234,.06);transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);transition:transform .6s;animation:floaty 7s ease-in-out infinite}
 .term:hover{transform:perspective(1200px) rotateY(0) rotateX(0)}
 @keyframes floaty{50%{translate:0 -10px}}
 @media (max-width:960px){.term{transform:none}}
@@ -123,7 +123,7 @@ h1 .line:nth-child(3) span{animation-delay:.24s}
 .marquee::after{right:0;background:linear-gradient(-90deg,var(--panel),transparent)}
 .track{display:flex;gap:56px;width:max-content;animation:slide 32s linear infinite}
 .marquee:hover .track{animation-play-state:paused}
-.track span{font-family:var(--display);font-size:22px;font-weight:700;color:#3a4558;white-space:nowrap;transition:color .2s;display:flex;align-items:center;gap:56px}
+.track span{font-family:var(--display);font-size:22px;font-weight:700;color:#55617a;white-space:nowrap;transition:color .2s;display:flex;align-items:center;gap:56px}
 .track span::after{content:"✦";color:var(--signal);font-size:12px}
 .track span:hover{color:var(--text)}
 @keyframes slide{to{transform:translateX(-50%)}}
@@ -307,7 +307,7 @@ form{display:grid;gap:14px}
 
 footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-.big-word{font-family:var(--display);font-weight:800;font-size:clamp(60px,15vw,210px);letter-spacing:-.05em;line-height:.85;background:linear-gradient(180deg,#1a2233,var(--ink));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 30px;user-select:none;white-space:nowrap;overflow:hidden}
+.big-word{font-family:var(--display);font-weight:800;font-size:clamp(60px,15vw,210px);letter-spacing:-.05em;line-height:.85;background:linear-gradient(180deg,#2c3650,var(--ink));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 30px;user-select:none;white-space:nowrap;overflow:hidden}
 
 #toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--text);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;z-index:300;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 #toast.show{transform:translate(-50%,0)}
@@ -338,7 +338,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><span class="live"></span>Web development studio · Lagos &amp; Abuja</span>
+      <span class="eyebrow">Web development studio</span>
       <h1>
         <span class="line"><span>We build websites</span></span>
         <span class="line"><span>your customers</span></span>
