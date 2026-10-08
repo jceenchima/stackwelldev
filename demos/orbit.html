@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Orbit — Demo by Stackwell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Figtree:wght@400;500;600;700&family=Fira+Code:wght@400&display=swap">
+<style>
+[hidden]{display:none!important}
+:root{--bg:#070814;--bg2:#0e1024;--card:#12152e;--line:#232850;--text:#f1f0ff;--muted:#9a9cc4;--peach:#ff9a6b;--pink:#ff5fa2;--lilac:#a99bff;--sky:#6bd3ff;
+--d:"Unbounded",system-ui,sans-serif;--b:"Figtree",system-ui,sans-serif;--m:"Fira Code",ui-monospace,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--b);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--peach);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100%);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.grad{background:linear-gradient(100deg,var(--peach),var(--pink) 50%,var(--lilac));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:gm 6s linear infinite}
+@keyframes gm{to{background-position:200% center}}
+header{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:calc(14px + env(safe-area-inset-top,0px))}
+.pillnav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 10px 10px 20px;border-radius:999px;background:rgba(14,16,36,.7);backdrop-filter:blur(14px);border:1px solid var(--line)}
+.logo{font-family:var(--d);font-weight:700;font-size:18px;display:flex;align-items:center;gap:10px}
+.logo i{width:22px;height:22px;border-radius:50%;border:2px solid var(--peach);position:relative;display:block}
+.logo i::after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:var(--pink);top:-4px;left:50%;margin-left:-3px;transform-origin:3px 12px;animation:orb 2.4s linear infinite}
+@keyframes orb{to{transform:rotate(360deg)}}
+.nl{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+.nl a{color:inherit;text-decoration:none;transition:color .2s}.nl a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:600;font-size:14px;background:var(--text);color:var(--bg);transition:transform .2s,box-shadow .2s;text-decoration:none;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(255,154,107,.6)}
+.btn.g{background:linear-gradient(100deg,var(--peach),var(--pink));color:#1a0612}
+.btn.o{background:transparent;color:var(--text);border:1px solid var(--line)}
+@media (max-width:760px){.nl{display:none}}
+/* hero */
+.hero{position:relative;padding-block:150px 60px;text-align:center;overflow:hidden}
+#sphere{position:absolute;left:50%;top:40px;transform:translateX(-50%);width:min(820px,140vw);height:auto;aspect-ratio:1;z-index:0;opacity:.85;pointer-events:none}
+.hero-c{position:relative;z-index:1}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(18,21,46,.7);font-size:13px;color:var(--muted)}
+.pill b{background:linear-gradient(100deg,var(--peach),var(--pink));color:#1a0612;padding:3px 10px;border-radius:999px;font-size:11px}
+.hero h1{font-family:var(--d);font-weight:700;font-size:clamp(36px,6.4vw,84px);line-height:1.02;letter-spacing:-.04em;margin:26px auto 22px;max-width:14ch;text-wrap:balance}
+.hero p{color:var(--muted);font-size:clamp(16px,1.7vw,19px);max-width:52ch;margin:0 auto 34px}
+.signup{display:flex;gap:8px;max-width:460px;margin:0 auto;padding:6px;border-radius:999px;background:rgba(18,21,46,.85);border:1px solid var(--line);backdrop-filter:blur(8px)}
+.signup input{flex:1;background:none;border:0;outline:none;padding:0 14px;min-width:0}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.logos{display:flex;justify-content:center;gap:clamp(24px,5vw,60px);flex-wrap:wrap;margin-top:70px;color:#5b5f8f;font-family:var(--d);font-weight:500;font-size:17px}
+.logos span{transition:color .3s}.logos span:hover{color:var(--text)}
+/* app mock */
+.mock{margin:60px auto 0;max-width:1000px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2));padding:14px;box-shadow:0 60px 120px -40px rgba(255,95,162,.35);transform:perspective(1400px) rotateX(18deg);transition:transform 1s cubic-bezier(.2,.8,.2,1);position:relative;z-index:1}
+.mock.flat{transform:perspective(1400px) rotateX(0)}
+.mock-in{border-radius:12px;background:#0a0c1e;border:1px solid var(--line);height:400px;position:relative;overflow:hidden}
+.mock svg{position:absolute;inset:0;width:100%;height:100%}
+.node{position:absolute;padding:12px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:13px;text-align:left;min-width:150px;box-shadow:0 12px 30px -10px #000;transform:translate(-50%,-50%);animation:nin .7s cubic-bezier(.2,1.4,.4,1) both}
+.node small{display:block;color:var(--muted);font-size:11px;font-family:var(--m)}
+.node .st{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:#58e3a1;box-shadow:0 0 10px #58e3a1}
+.node.run .st{background:var(--peach);box-shadow:0 0 10px var(--peach);animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.3}}
+@keyframes nin{from{opacity:0;transform:translate(-50%,-30%) scale(.8)}}
+.flow{stroke-dasharray:6 8;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-14}}
+@media (max-width:700px){.mock-in{height:460px}.node{min-width:120px;font-size:12px;padding:10px}}
+section{padding-block:clamp(70px,10vw,120px)}
+.sh{text-align:center;margin-bottom:46px}
+.kick{font-family:var(--m);font-size:12px;color:var(--peach);letter-spacing:.08em;text-transform:uppercase}
+h2{font-family:var(--d);font-weight:700;font-size:clamp(28px,4vw,50px);letter-spacing:-.035em;line-height:1.08;margin:12px auto 12px;max-width:20ch;text-wrap:balance}
+.sh p{color:var(--muted);max-width:50ch;margin:0 auto}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(220px,auto);gap:16px}
+.b{border-radius:22px;background:var(--card);border:1px solid var(--line);padding:26px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;--x:50%;--y:50%}
+.b::before{content:"";position:absolute;inset:0;background:radial-gradient(300px circle at var(--x) var(--y),rgba(255,154,107,.14),transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none}
+.b:hover{border-color:#3a3f78}.b:hover::before{opacity:1}
+.b h3{font-family:var(--d);font-size:18px;font-weight:500;margin:0 0 6px;letter-spacing:-.02em}
+.b p{color:var(--muted);margin:0;font-size:15px;max-width:40ch}
+.b1{grid-column:span 4}.b2{grid-column:span 2}.b3{grid-column:span 2}.b4{grid-column:span 2}.b5{grid-column:span 2}
+@media (max-width:900px){.b1,.b2,.b3,.b4,.b5{grid-column:span 6}}
+.chat{margin-top:20px;display:grid;gap:10px;font-size:14px}
+.msg{padding:10px 14px;border-radius:14px;max-width:85%;animation:nin2 .4s both}
+@keyframes nin2{from{opacity:0;transform:translateY(8px)}}
+.msg.u{background:var(--line);justify-self:end;border-bottom-right-radius:4px}
+.msg.a{background:linear-gradient(135deg,rgba(255,154,107,.18),rgba(255,95,162,.14));border:1px solid rgba(255,154,107,.25);border-bottom-left-radius:4px}
+.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--peach);margin-right:3px;animation:ty 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes ty{50%{transform:translateY(-5px);opacity:.4}}
+.big{font-family:var(--d);font-size:56px;font-weight:700;letter-spacing:-.04em;margin-top:18px;font-variant-numeric:tabular-nums}
+.spark{width:100%;height:70px;margin-top:10px}
+.spark path.l{stroke-dasharray:400;stroke-dashoffset:400;animation:dr 2.4s ease forwards infinite alternate}
+@keyframes dr{to{stroke-dashoffset:0}}
+.ints{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.ints i{aspect-ratio:1;border-radius:14px;background:var(--bg2);border:1px solid var(--line);display:grid;place-items:center;font-style:normal;font-family:var(--d);font-size:13px;color:var(--muted);transition:transform .3s,color .3s,border-color .3s}
+.b4:hover .ints i{transform:translateY(-4px);color:var(--text);border-color:var(--peach)}
+.b4:hover .ints i:nth-child(2n){transition-delay:.06s}
+.lock{width:90px;height:90px;margin:16px auto 0;border-radius:24px;background:var(--bg2);border:1px solid var(--line);display:grid;place-items:center;position:relative}
+.lock::before,.lock::after{content:"";position:absolute;inset:-12px;border-radius:30px;border:1px solid rgba(255,154,107,.3);animation:ripple 2.4s infinite}
+.lock::after{animation-delay:1.2s}
+@keyframes ripple{from{transform:scale(.9);opacity:1}to{transform:scale(1.4);opacity:0}}
+/* tabs */
+.tabs{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:26px}
+.tabs button{padding:10px 18px;border-radius:999px;border:1px solid var(--line);font-size:14px;color:var(--muted);transition:all .25s}
+.tabs button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.tabp{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:center;border-radius:24px;background:var(--card);border:1px solid var(--line);padding:clamp(20px,4vw,40px)}
+@media (max-width:820px){.tabp{grid-template-columns:1fr}}
+.tabp h3{font-family:var(--d);font-size:26px;font-weight:500;letter-spacing:-.03em;margin:0 0 10px}
+.tabp p{color:var(--muted)}
+.tabp ul{padding:0;margin:16px 0 0;list-style:none;display:grid;gap:10px}
+.tabp li{display:flex;gap:10px;font-size:15px}
+.tabp li::before{content:"✓";color:var(--peach);font-weight:700}
+.code{background:#0a0c1e;border:1px solid var(--line);border-radius:16px;padding:20px;font-family:var(--m);font-size:13px;line-height:1.8;min-height:260px;white-space:pre-wrap;overflow:auto;color:#c9c9ef}
+.code .k{color:var(--pink)}.code .s{color:var(--peach)}.code .c{color:#5b5f8f}.code .f{color:var(--sky)}
+.fade{animation:nin2 .5s both}
+/* pricing */
+.toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:34px;font-size:14px;color:var(--muted)}
+.sw{width:52px;height:28px;border-radius:14px;background:var(--line);position:relative;transition:background .3s}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.sw[aria-checked=true]{background:linear-gradient(100deg,var(--peach),var(--pink))}
+.sw[aria-checked=true]::after{transform:translateX(24px)}
+.save{font-size:12px;padding:3px 9px;border-radius:999px;background:rgba(255,154,107,.15);color:var(--peach)}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+@media (max-width:880px){.prices{grid-template-columns:1fr}}
+.plan{border-radius:24px;background:var(--card);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;gap:14px;transition:transform .3s}
+.plan:hover{transform:translateY(-6px)}
+.plan.hot{background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(140deg,var(--peach),var(--pink),var(--lilac)) border-box;border:1.5px solid transparent;position:relative}
+.plan.hot::before{content:"Most popular";position:absolute;top:-12px;left:30px;background:linear-gradient(100deg,var(--peach),var(--pink));color:#1a0612;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px}
+.plan h3{font-family:var(--d);font-weight:500;margin:0;font-size:18px}
+.amt{font-family:var(--d);font-size:46px;font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.amt small{font-family:var(--b);font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:14px;color:var(--muted);flex:1}
+.plan li::before{content:"→ ";color:var(--peach)}
+.plan .btn{justify-content:center}
+/* faq */
+.faq{max-width:780px;margin:0 auto;display:grid;gap:10px}
+.q{border-radius:16px;border:1px solid var(--line);background:var(--card);overflow:hidden}
+.q button{width:100%;text-align:left;padding:20px 22px;display:flex;justify-content:space-between;gap:16px;font-weight:600;font-size:16px}
+.q button i{font-style:normal;transition:transform .3s;color:var(--peach);font-size:20px;line-height:1}
+.q.open button i{transform:rotate(45deg)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+.q.open .a{grid-template-rows:1fr}
+.q .a div{overflow:hidden;padding:0 22px;color:var(--muted)}
+.q.open .a div{padding-bottom:20px}
+.final{text-align:center;border-radius:32px;padding:clamp(40px,7vw,90px) 20px;background:radial-gradient(60% 80% at 50% 0,rgba(255,95,162,.25),transparent 70%),var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden}
+footer{padding-block:30px calc(30px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);background:var(--text);color:var(--bg);padding:12px 20px;border-radius:999px;font-size:14px;font-weight:600;z-index:95;transition:transform .35s cubic-bezier(.2,.8,.2,1);white-space:nowrap}
+.toast.show{transform:translate(-50%,0)}
+.sw-badge{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;background:#fff;color:#111;font:600 12px system-ui,sans-serif;padding:9px 14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="pillnav">
+  <div class="logo"><i></i>Orbit</div>
+  <nav class="nl"><a href="#features">Product</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+  <a class="btn" href="#pricing">Start free</a>
+</div></div></header>
+
+<section class="hero">
+  <canvas id="sphere" width="900" height="900" aria-hidden="true"></canvas>
+  <div class="wrap hero-c">
+    <span class="pill">Orbit 2.0 is here <b>See what's new</b></span>
+    <h1>Put your busywork in <span class="grad">orbit.</span></h1>
+    <p>Orbit connects your tools and lets AI agents handle invoices, follow-ups and reports in the background, so your team spends the day on real work.</p>
+    <form class="signup" id="signup"><input id="em" type="email" placeholder="you@company.com" aria-label="Work email" required><button class="btn g" type="submit">Get early access</button></form>
+    <div class="note" id="note">Free for teams up to 5. No card needed.</div>
+    <div class="mock" id="mock"><div class="mock-in" id="flow"></div></div>
+    <div class="logos"><span>Kudi&amp;Co</span><span>Lumen</span><span>Northwind</span><span>Okra Labs</span><span>Halcyon</span><span>Brightpath</span></div>
+  </div>
+</section>
+
+<section id="features"><div class="wrap">
+  <div class="sh"><div class="kick">// Features</div><h2>One workspace for every repetitive task</h2><p>Describe the job in plain English. Orbit builds the workflow, runs it and tells you when it's done.</p></div>
+  <div class="bento">
+    <div class="b b1"><h3>Ask in plain English</h3><p>Tell Orbit what you need. It drafts the workflow and asks before doing anything important.</p>
+      <div class="chat" id="chat"></div></div>
+    <div class="b b2"><h3>Hours saved</h3><p>Average per team, per week.</p><div class="big"><span id="hrs">0</span>h</div>
+      <svg class="spark" viewBox="0 0 200 70" preserveAspectRatio="none"><defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#ff9a6b"/><stop offset="1" stop-color="#ff5fa2"/></linearGradient></defs><path class="l" d="M0 60 C20 55 30 58 45 48 S70 40 85 42 110 26 130 28 160 12 200 8" fill="none" stroke="url(#sg)" stroke-width="3"/></svg></div>
+    <div class="b b3"><h3>Bank-grade security</h3><p>SOC 2 controls, encrypted data and role-based access.</p><div class="lock"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ff9a6b" stroke-width="1.8"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div></div>
+    <div class="b b4"><h3>120+ integrations</h3><p>Plug into the tools you already pay for.</p><div class="ints"><i>Gmail</i><i>Slack</i><i>Sheets</i><i>Notion</i><i>Paystack</i><i>HubSpot</i><i>Xero</i><i>+113</i></div></div>
+    <div class="b b5"><h3>Runs while you sleep</h3><p>Schedules, triggers and retries are built in. Get a summary every morning.</p><div class="big" style="font-size:40px" id="clock">00:00</div></div>
+  </div>
+</div></section>
+
+<section id="how" style="padding-top:0"><div class="wrap">
+  <div class="sh"><div class="kick">// How it works</div><h2>Built for every team in the company</h2></div>
+  <div class="tabs" id="tabs"></div>
+  <div class="tabp" id="tabp"></div>
+</div></section>
+
+<section id="pricing" style="padding-top:0"><div class="wrap">
+  <div class="sh"><div class="kick">// Pricing</div><h2>Simple pricing that grows with you</h2></div>
+  <div class="toggle">Monthly <button class="sw" id="yearly" role="switch" aria-checked="false" aria-label="Bill yearly"></button> Yearly <span class="save">Save 20%</span></div>
+  <div class="prices" id="prices"></div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+  <div class="sh"><div class="kick">// FAQ</div><h2>Questions, answered</h2></div>
+  <div class="faq" id="faqs"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="final">
+  <h2>Ready to get your week back?</h2><p style="color:var(--muted);margin:0 auto 28px;max-width:44ch">Set up your first workflow in under ten minutes.</p>
+  <a class="btn g" href="#top" onclick="document.getElementById('em').focus();return false">Start free</a>
+</div></div></section>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><span>© 2026 Orbit Labs — a demo product page</span><span>Made in Lagos</span></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<a class="sw-badge" id="swBadge" href="../">← Built by Stackwell</a>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const badge=$('#swBadge');if(window.top!==window)badge.hidden=true;badge.onclick=e=>{if(document.referrer&&history.length>1){e.preventDefault();history.back()}};
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2000)}
+/* sphere */
+const cv=$('#sphere'),x=cv.getContext('2d'),NP=520,pts=[];
+for(let i=0;i<NP;i++){const y=1-i/(NP-1)*2,r=Math.sqrt(1-y*y),th=i*2.399963;pts.push([Math.cos(th)*r,y,Math.sin(th)*r])}
+let ry=0,rx=.3,tx=.3,ty=0;addEventListener('pointermove',e=>{ty=(e.clientX/innerWidth-.5)*1.2;tx=.3+(e.clientY/innerHeight-.5)*.6});
+function sph(){x.clearRect(0,0,900,900);ry+=.003;rx+=(tx-rx)*.04;const oy=ry+ty;const R=330;
+  const cy=Math.cos(oy),sy=Math.sin(oy),cx=Math.cos(rx),sx=Math.sin(rx);
+  for(const [a,b,c] of pts){let X=a*cy-c*sy,Z=a*sy+c*cy,Y=b*cx-Z*sx;Z=b*sx+Z*cx;const s=(Z+1.6)/2.6;
+    const hue=Z>0?'255,154,107':'169,155,255';x.fillStyle=`rgba(${hue},${.12+s*.6})`;x.beginPath();x.arc(450+X*R,450+Y*R,1+s*1.8,0,7);x.fill()}
+  x.strokeStyle='rgba(255,95,162,.25)';x.lineWidth=1.2;x.beginPath();x.ellipse(450,450,420,90,-.3,0,7);x.stroke();
+  const t=performance.now()/1400;x.fillStyle='#ff9a6b';x.beginPath();const ex=450+Math.cos(t)*420,ey=450+Math.sin(t)*90;const ca=Math.cos(-.3),sa=Math.sin(-.3);x.arc(450+(ex-450)*ca-(ey-450)*sa,450+(ex-450)*sa+(ey-450)*ca,6,0,7);x.fill();
+  if(!reduce)requestAnimationFrame(sph)}
+sph();
+/* mock flatten on scroll */
+addEventListener('scroll',()=>$('#mock').classList.toggle('flat',scrollY>120),{passive:true});
+/* flow mock */
+const narrow=innerWidth<700;
+const nodes=narrow?[
+ ['New invoice email','trigger · Gmail',50,10],['Read PDF with AI','extract · 2.1s',50,32],['Match in Xero','lookup',25,56],['Notify finance','Slack · #ops',75,56],['Weekly report','Sheets · Fri 5pm',50,84]]:[
+ ['New invoice email','trigger · Gmail',14,24],['Read PDF with AI','extract · 2.1s',38,24],['Match in Xero','lookup',62,14],['Flag duplicates','rule',62,46],['Notify finance','Slack · #ops',86,24],['Weekly report','Sheets · Fri 5pm',50,80]];
+const links=narrow?[[0,1],[1,2],[1,3],[2,4],[3,4]]:[[0,1],[1,2],[1,3],[2,4],[3,4],[3,5]];
+function flow(){const f=$('#flow');const W=f.clientWidth,H=f.clientHeight;
+  let s=`<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#ff9a6b"/><stop offset="1" stop-color="#ff5fa2"/></linearGradient><pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#232850"/></pattern></defs><rect width="100%" height="100%" fill="url(#dots)"/>`;
+  links.forEach(([a,b])=>{const A=nodes[a],B=nodes[b];const ax=A[2]/100*W,ay=A[3]/100*H,bx=B[2]/100*W,by=B[3]/100*H;const mx=(ax+bx)/2;
+    const d=narrow?`M${ax},${ay} C${ax},${(ay+by)/2} ${bx},${(ay+by)/2} ${bx},${by}`:`M${ax},${ay} C${mx},${ay} ${mx},${by} ${bx},${by}`;
+    s+=`<path d="${d}" stroke="#232850" stroke-width="2" fill="none"/><path class="flow" d="${d}" stroke="url(#lg)" stroke-width="2" fill="none"/><circle r="4" fill="#fff"><animateMotion dur="${2+Math.random()*1.5}s" repeatCount="indefinite" path="${d}"/></circle>`});
+  s+='</svg>';s+=nodes.map((n,i)=>`<div class="node" style="left:${n[2]}%;top:${n[3]}%;animation-delay:${.3+i*.12}s" data-i="${i}"><span class="st"></span>${n[0]}<small>${n[1]}</small></div>`).join('');f.innerHTML=s}
+flow();let ni=0;setInterval(()=>{$$('.node').forEach((n,i)=>n.classList.toggle('run',i===ni));ni=(ni+1)%nodes.length},900);
+/* signup */
+$('#signup').onsubmit=e=>{e.preventDefault();const v=$('#em').value.trim();if(!/^\S+@\S+\.\S+$/.test(v)){$('#note').textContent='Enter a valid work email, like ada@company.com.';$('#note').style.color='var(--peach)';return}
+  $('#note').style.color='';$('#note').textContent=`You're on the list, ${v.split('@')[0]}. (Demo only, nothing was sent.)`;$('#em').value='';toast('Added to the waitlist')};
+/* chat */
+const convo=[['u','Every Friday, send me a summary of unpaid invoices over ₦500k.'],['a','Got it. I\'ll check Xero every Friday at 4pm, list unpaid invoices over ₦500,000, and email you a summary. Want me to also remind the clients?'],['u','Yes, but only if they\'re more than 14 days late.'],['a','Done. Workflow "Friday invoice sweep" is live ✓']];
+async function chat(){const c=$('#chat');while(true){c.innerHTML='';for(const [w,t] of convo){if(w==='a'){const ty=document.createElement('div');ty.className='msg a typing';ty.innerHTML='<span></span><span></span><span></span>';c.appendChild(ty);await new Promise(r=>setTimeout(r,1100));ty.remove()}
+  const m=document.createElement('div');m.className='msg '+w;m.textContent=t;c.appendChild(m);await new Promise(r=>setTimeout(r,1300))}if(reduce)return;await new Promise(r=>setTimeout(r,4000))}}
+chat();
+/* counters */
+(function(){const el=$('#hrs');const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1600);el.textContent=Math.round(31*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0);io.disconnect()}});io.observe(el)})();
+setInterval(()=>{const d=new Date();$('#clock').textContent=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})},1000);
+$$('.b').forEach(b=>b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--x',e.clientX-r.left+'px');b.style.setProperty('--y',e.clientY-r.top+'px')}));
+/* tabs */
+const T=[
+ {n:'Finance',h:'Close the books faster',p:'Orbit reads invoices and receipts, matches them to transactions and flags anything odd.',l:['Invoice capture from email','Auto-reconciliation with Xero and QuickBooks','Late-payment reminders'],c:`<span class="c">// Friday invoice sweep</span>\n<span class="k">when</span> schedule(<span class="s">"Fri 16:00"</span>)\n<span class="k">get</span> invoices = <span class="f">xero.unpaid</span>({ over: <span class="s">500000</span> })\n<span class="k">for</span> inv <span class="k">in</span> invoices\n  <span class="k">if</span> inv.daysLate > <span class="s">14</span>\n    <span class="f">email.remind</span>(inv.client)\n<span class="f">report.send</span>(<span class="s">"jceen@company.com"</span>)`},
+ {n:'Sales',h:'Never miss a follow-up',p:'Leads from your website, WhatsApp and email land in one place, scored and assigned.',l:['Lead scoring with AI','Automatic follow-up sequences','Deal updates in Slack'],c:`<span class="c">// New lead router</span>\n<span class="k">when</span> <span class="f">form.submitted</span>(<span class="s">"website"</span>)\n<span class="k">let</span> score = <span class="f">ai.score</span>(lead)\n<span class="k">if</span> score > <span class="s">70</span>\n  <span class="f">hubspot.assign</span>(lead, <span class="s">"senior"</span>)\n  <span class="f">slack.post</span>(<span class="s">"#sales"</span>, lead)\n<span class="k">else</span>\n  <span class="f">sequence.start</span>(lead, <span class="s">"nurture"</span>)`},
+ {n:'Operations',h:'Keep everything moving',p:'From stock alerts to staff onboarding, Orbit handles the checklists nobody wants to own.',l:['Inventory alerts','New-hire onboarding','Vendor approvals'],c:`<span class="c">// Low stock alert</span>\n<span class="k">when</span> <span class="f">sheet.changed</span>(<span class="s">"Inventory"</span>)\n<span class="k">for</span> item <span class="k">in</span> rows\n  <span class="k">if</span> item.qty < item.reorder\n    <span class="f">po.draft</span>(item.vendor, item)\n    <span class="f">approve.ask</span>(<span class="s">"ops-lead"</span>)`},
+ {n:'Support',h:'Answer customers in seconds',p:'Orbit drafts replies from your help docs and passes tricky ones to a human.',l:['AI-drafted replies','Smart escalation','CSAT tracking'],c:`<span class="c">// Support triage</span>\n<span class="k">when</span> <span class="f">ticket.new</span>()\n<span class="k">let</span> draft = <span class="f">ai.reply</span>(ticket, docs)\n<span class="k">if</span> draft.confidence > <span class="s">0.9</span>\n  <span class="f">ticket.send</span>(draft)\n<span class="k">else</span>\n  <span class="f">ticket.assign</span>(<span class="s">"tier-2"</span>)`}];
+let ti=0;$('#tabs').innerHTML=T.map((t,i)=>`<button data-t="${i}" class="${i?'':'on'}">${t.n}</button>`).join('');
+function tab(){const t=T[ti];$('#tabp').innerHTML=`<div class="fade"><h3>${t.h}</h3><p>${t.p}</p><ul>${t.l.map(l=>`<li>${l}</li>`).join('')}</ul></div><div class="code fade" id="code"></div>`;
+  const code=$('#code'),html=t.c;if(reduce){code.innerHTML=html;return}let i=0;const tmp=document.createElement('div');
+  (function step(){i+=3;let out='',vis=0,inTag=false;for(const ch of html){if(ch==='<')inTag=true;if(inTag||vis<i){out+=ch;if(!inTag)vis++}if(ch==='>')inTag=false}code.innerHTML=out+'<span style="border-right:2px solid #ff9a6b"> </span>';if(vis<html.replace(/<[^>]+>/g,'').length)setTimeout(step,16)})()}
+tab();$$('#tabs button').forEach(b=>b.onclick=()=>{ti=+b.dataset.t;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));tab()});
+/* pricing */
+const plans=[['Starter',0,'For small teams trying Orbit.',['5 team members','500 tasks / month','Core integrations','Email support'],'Start free'],['Growth',29,'For teams automating daily work.',['25 team members','10,000 tasks / month','AI agents','All 120+ integrations','Priority support'],'Start 14-day trial',1],['Scale',79,'For companies running ops on Orbit.',['Unlimited members','Unlimited tasks','SSO &amp; audit logs','Dedicated success manager'],'Talk to sales']];
+let yearly=false;
+function renderP(){$('#prices').innerHTML=plans.map(([n,p,d,f,c,hot])=>`<div class="plan ${hot?'hot':''}"><h3>${n}</h3><div class="amt">$<span data-v="${p}">${p}</span><small> /user/mo</small></div><p style="margin:0;color:var(--muted);font-size:14px">${d}</p><ul>${f.map(x=>`<li>${x}</li>`).join('')}</ul><button class="btn ${hot?'g':'o'}" data-plan="${n}">${c}</button></div>`).join('');
+  $$('[data-plan]').forEach(b=>b.onclick=()=>toast(b.dataset.plan+' plan selected'))}
+renderP();
+$('#yearly').onclick=e=>{yearly=!yearly;e.currentTarget.setAttribute('aria-checked',yearly);$$('[data-v]').forEach(s=>{const base=+s.dataset.v,from=+s.textContent,to=yearly?Math.round(base*.8):base;const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/500);s.textContent=Math.round(from+(to-from)*p);if(p<1)requestAnimationFrame(f)})(t0)})};
+/* faq */
+const F=[['Do I need to know how to code?','No. You describe what you want in plain English and Orbit builds the workflow. Developers can still edit the code view if they want.'],['Can I pay in naira?','Yes. We accept Paystack and Flutterwave, so you can pay with a Nigerian card or bank transfer.'],['Is my data safe?','Your data is encrypted in transit and at rest. Orbit never trains AI models on your company data.'],['What happens after the free trial?','You choose a plan or stay on Starter for free. We never charge you without asking first.']];
+$('#faqs').innerHTML=F.map(([q,a],i)=>`<div class="q ${i?'':'open'}"><button aria-expanded="${!i}">${q}<i>+</i></button><div class="a"><div>${a}</div></div></div>`).join('');
+$$('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});
+</script>
+</body>
+</html>
