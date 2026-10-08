@@ -239,6 +239,27 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 @keyframes rbsC{50%{transform:translateY(-4px)}}
 .t-rbs .rbs-live{position:absolute;top:14px;left:16px;font:600 11px var(--mono);letter-spacing:.06em;color:var(--ok);background:rgba(91,227,143,.1);border:1px solid rgba(91,227,143,.35);padding:5px 10px;border-radius:999px}
 @media (max-width:600px){.t-rbs .rbs-search em{display:none}.t-rbs .rbs-cards{grid-template-columns:repeat(2,1fr)}.t-rbs .rbs-cards i:nth-child(n+3){display:none}}
+
+/* compact work grid */
+.work{grid-template-columns:repeat(6,1fr);gap:18px}
+.work .card{grid-column:span 2;border-radius:16px}
+.work .card:nth-last-child(-n+2):nth-child(3n+1),.work .card:nth-last-child(-n+2):nth-child(3n+1)~.card{grid-column:span 3}
+.work .thumb{height:200px}
+.work .card-body{padding:16px 18px 18px;gap:8px}
+.work .card h3{font-size:21px}
+.work .card p{font-size:14px;line-height:1.5}
+.work .stack span{font-size:10px;padding:3px 7px}
+.work .card-actions{margin-top:4px;gap:8px}
+.work .card-actions .btn{padding:8px 13px;font-size:12.5px}
+@media (max-width:1000px){.work .card,.work .card:nth-last-child(-n+2):nth-child(3n+1),.work .card:nth-last-child(-n+2):nth-child(3n+1)~.card{grid-column:span 3}.work .card:last-child:nth-child(odd){grid-column:span 6}}
+@media (max-width:640px){.work .card,.work .card:nth-last-child(-n+2):nth-child(3n+1),.work .card:nth-last-child(-n+2):nth-child(3n+1)~.card,.work .card:last-child:nth-child(odd){grid-column:span 6}.work .thumb{height:190px}}
+/* thumbnails tuned for the shorter frame */
+.t-orbit .o1{width:84px;height:84px}.t-orbit .o2{width:140px;height:140px}.t-orbit .o3{width:200px;height:200px}.t-orbit .core{font-size:32px}
+.t-cow .cw-card{top:24px;bottom:22px;left:10%;right:10%;padding:10px;gap:6px}
+.t-cow .cw-coin{width:46px;height:46px;font-size:19px;top:10px}.t-cow .cw-coin.c2{width:36px;height:36px;font-size:15px;bottom:10px}
+.t-adire .rod{top:16px}.t-adire .cl{top:20px}.t-adire .tg{bottom:24px}
+.t-rbs{padding:18px 5% 0}.t-rbs .rbs-txt b{font-size:15px}.t-rbs .rbs-txt small{font-size:10px}.t-rbs .rbs-search{margin-top:5px;padding:4px;font-size:10px}.t-rbs .rbs-search em{display:none}.t-rbs .rbs-logo{height:18px;top:8px}.t-rbs .rbs-hero:has(.rbs-logo) .rbs-txt{margin-top:18px}.t-rbs .rbs-live{top:8px;left:10px;font-size:10px;padding:3px 8px}
+.t-haven .sun{width:50px;height:50px;top:18px}.t-haven .pin{font-size:10px;padding:4px 8px}
 /* modal */
 .modal{position:fixed;inset:0;z-index:150;background:rgba(3,5,9,.86);backdrop-filter:blur(10px);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));gap:14px;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal.open{opacity:1;pointer-events:auto}
@@ -418,7 +439,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
     </div>
     <div class="work" id="workGrid">
 
-      <article class="card wide rv" data-cat="commerce">
+      <article class="card rv" data-cat="commerce">
         <div class="thumb t-adire"><div class="rod"></div><div class="cl"></div><span class="tg">ONIKO · 13 DIPS</span></div>
         <div class="card-body">
           <div class="card-top"><span class="tag">E-commerce · Storefront</span><span class="tag mono">01</span></div>
@@ -429,13 +450,13 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         </div>
       </article>
 
-      <article class="card narrow rv" data-cat="saas">
+      <article class="card rv" data-cat="saas">
         <div class="thumb t-orbit"><div class="o o3"><i></i></div><div class="o o2"><i></i></div><div class="o o1"><i></i></div><div class="core">orbit.</div></div>
         <div class="card-body">
           <div class="card-top"><span class="tag">SaaS · Landing</span><span class="tag mono">02</span></div>
           <h3>Orbit</h3>
           <p>A launch page for an AI workflow tool, with a pricing toggle and feature tabs.</p>
-          <div class="card-actions"><button class="btn primary" data-preview="demos/orbit.html" data-name="Orbit">Preview <span class="arr">→</span></button><a class="btn" href="demos/orbit.html">Open ↗</a></div>
+          <div class="card-actions"><button class="btn primary" data-preview="demos/orbit.html" data-name="Orbit">Preview <span class="arr">→</span></button><a class="btn" href="demos/orbit.html">Open full screen ↗</a></div>
         </div>
       </article>
 
@@ -467,7 +488,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         </div>
       </article>
 
-      <article class="card rv" data-cat="realestate" style="grid-column:span 6">
+      <article class="card rv" data-cat="realestate">
         <div class="thumb t-rbs"><div class="rbs-win">
           <div class="rbs-bar"><i></i><i></i><i></i><span>rentbuystay.com</span></div>
           <div class="rbs-hero"><img class="rbs-img" src="https://www.rentbuystay.com/_next/image?url=%2Fimages%2Fhero-bg.png&amp;w=1920&amp;q=75" alt="RentBuyStay homepage hero" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://www.rentbuystay.com/images/hero-bg.png'}else{this.remove()}"><img class="rbs-logo" src="https://www.rentbuystay.com/images/logo.svg" alt="RentBuyStay logo" loading="lazy" onerror="this.remove()"><div class="rbs-txt"><b>Find Your Perfect Home in Nigeria</b><small>Rent · Buy · Shortlet across all 36 states</small>
