@@ -193,6 +193,22 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .t-orbit .core::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:3px;background:#ff5b1f;animation:grow2 2.4s ease-in-out infinite alternate;transform-origin:left}
 @keyframes grow2{from{transform:scaleX(.2)}}
 
+.t-cow{background:#ece7ff}
+.t-cow .cw-grid{position:absolute;inset:0;background-image:radial-gradient(rgba(17,17,17,.14) 1px,transparent 1px);background-size:16px 16px}
+.t-cow .cw-card{position:absolute;left:12%;right:12%;top:40px;bottom:40px;background:#fff;border:2px solid #111;border-radius:14px;box-shadow:6px 6px 0 #111;padding:14px;display:flex;flex-direction:column;gap:10px;transition:transform .4s}
+.card:hover .t-cow .cw-card{transform:translate(-4px,-4px) rotate(-1deg)}
+.t-cow .cw-top{display:flex;align-items:center;gap:8px;color:#111;font:800 13px var(--body)}
+.t-cow .cw-ic{width:22px;height:22px;border-radius:50%;border:2px solid #111;background:#ffb020;display:grid;place-items:center;font-size:11px}
+.t-cow .cw-up{margin-left:auto;font:700 11px var(--mono);background:#c9f5df;border:2px solid #111;border-radius:6px;padding:1px 6px}
+.t-cow .cw-candles{flex:1;display:flex;gap:6%;align-items:stretch;position:relative;padding:0 2%}
+.t-cow .cw-candles i{flex:1;position:relative}
+.t-cow .cw-candles i::before{content:"";position:absolute;left:calc(50% - 1px);width:2px;background:#111;bottom:calc(var(--o) - 8%);height:calc(var(--h) + 16%)}
+.t-cow .cw-candles i::after{content:"";position:absolute;left:0;right:0;bottom:var(--o);height:var(--h);background:#2fd08a;border:2px solid #111;border-radius:2px;animation:cwb 2.4s ease-in-out infinite alternate}
+.t-cow .cw-candles i.r::after{background:#ff6b4a;animation-delay:-1.2s}
+@keyframes cwb{to{height:calc(var(--h) * .6)}}
+.t-cow .cw-coin{position:absolute;right:7%;top:16px;width:58px;height:58px;border-radius:50%;background:#ffd23f;border:2.5px solid #111;display:grid;place-items:center;font:900 24px var(--body);color:#111;animation:cwflip 3.4s linear infinite;box-shadow:inset -4px -5px 0 rgba(0,0,0,.14)}
+.t-cow .cw-coin.c2{right:auto;left:6%;top:auto;bottom:18px;width:44px;height:44px;font-size:18px;background:#ffb020;animation-duration:4.4s}
+@keyframes cwflip{to{transform:rotateY(360deg)}}
 /* modal */
 .modal{position:fixed;inset:0;z-index:150;background:rgba(3,5,9,.86);backdrop-filter:blur(10px);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));gap:14px;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal.open{opacity:1;pointer-events:auto}
@@ -334,7 +350,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         <a href="#contact" class="btn magnetic">Book a free call</a>
       </div>
       <div class="stats">
-        <div class="stat"><b data-count="3">0</b><span>live demo builds</span></div>
+        <div class="stat"><b data-count="4">0</b><span>live demo builds</span></div>
         <div class="stat"><b data-count="100" data-suffix="%">0</b><span>mobile-first layouts</span></div>
         <div class="stat"><b data-count="6" data-prefix="2–">0</b><span>weeks typical delivery</span></div>
       </div>
@@ -361,6 +377,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
       <button class="chip" data-f="commerce">E-commerce</button>
       <button class="chip" data-f="realestate">Real estate</button>
       <button class="chip" data-f="saas">SaaS</button>
+      <button class="chip" data-f="crypto">Crypto</button>
     </div>
     <div class="work" id="workGrid">
 
@@ -385,13 +402,27 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         </div>
       </article>
 
-      <article class="card rv" data-cat="realestate" style="grid-column:span 6">
+      <article class="card rv" data-cat="crypto">
+        <div class="thumb t-cow"><div class="cw-grid"></div>
+          <div class="cw-card"><div class="cw-top"><span class="cw-ic">B</span><b>BTC/NGN</b><span class="cw-up">+2.41%</span></div><div class="cw-candles"><i style="--h:30%;--o:20%"></i><i class="r" style="--h:22%;--o:34%"></i><i style="--h:40%;--o:28%"></i><i style="--h:26%;--o:46%"></i><i class="r" style="--h:20%;--o:52%"></i><i style="--h:44%;--o:44%"></i><i style="--h:30%;--o:62%"></i><i class="r" style="--h:18%;--o:70%"></i><i style="--h:36%;--o:66%"></i></div></div>
+          <div class="cw-coin">₦</div><div class="cw-coin c2">B</div>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><span class="tag">Crypto · Exchange</span><span class="tag mono">03</span></div>
+          <h3>Cowrie</h3>
+          <p>A naira crypto exchange with a live candlestick desk, order book, market heatmap, quick-buy flow and savings vault.</p>
+          <div class="stack"><span>Live charts</span><span>Order book</span><span>Heatmap</span><span>Buy flow</span></div>
+          <div class="card-actions"><button class="btn primary" data-preview="demos/cowrie.html" data-name="Cowrie">Preview <span class="arr">→</span></button><a class="btn" href="demos/cowrie.html">Open full screen ↗</a></div>
+        </div>
+      </article>
+
+      <article class="card rv" data-cat="realestate">
         <div class="thumb t-haven"><div class="sun"></div>
           <span class="pin" style="left:18%;top:38%">₦85M · Lekki</span><span class="pin" style="left:56%;top:58%">₦42M · Gwarinpa</span>
           <svg viewBox="0 0 600 180" preserveAspectRatio="none"><path fill="#7b3d4f" d="M0 120 L60 120 L60 70 L100 40 L140 70 L140 120 L190 120 L190 50 L260 50 L260 120 L300 120 L300 80 L350 30 L400 80 L400 120 L450 120 L450 60 L520 60 L520 120 L600 120 L600 180 L0 180Z"/><path fill="#4a2232" d="M0 150 L600 140 L600 180 L0 180Z"/><g fill="#ffd27a"><rect x="75" y="85" width="12" height="14"/><rect x="110" y="85" width="12" height="14"/><rect x="205" y="65" width="12" height="14"/><rect x="235" y="65" width="12" height="14"/><rect x="335" y="90" width="12" height="14"/><rect x="465" y="75" width="12" height="14"/><rect x="495" y="75" width="12" height="14"/></g></svg>
         </div>
         <div class="card-body">
-          <div class="card-top"><span class="tag">Real estate · Listings</span><span class="tag mono">03</span></div>
+          <div class="card-top"><span class="tag">Real estate · Listings</span><span class="tag mono">04</span></div>
           <h3>Haven Homes</h3>
           <p>Property search with filters, saved homes, a map view and a mortgage calculator.</p>
           <div class="stack"><span>Search &amp; filter</span><span>Map pins</span><span>Calculator</span></div>

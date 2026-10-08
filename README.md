@@ -1,10 +1,11 @@
 # Stackwell Dev
 
-Agency website for Stackwell Dev, with three live demo frontends:
+Agency website for Stackwell Dev, with four live demo frontends:
 
 | Demo | File | What it shows |
 |---|---|---|
 | Adire & Co. | `demos/adire.html` | Textile store: generative fabric, dye-process scroll story, pattern studio, garment preview, 3-step checkout |
+| Cowrie | `demos/cowrie.html` | Crypto exchange: live candles, order book, heatmap, quick-buy, vault calculator |
 | Haven Homes | `demos/haven.html` | Real estate: search, map view, inspection booking, mortgage calculator |
 | Orbit | `demos/orbit.html` | SaaS landing page: animated hero, feature tabs, pricing toggle, FAQ |
 
