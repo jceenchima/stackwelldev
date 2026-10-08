@@ -241,18 +241,30 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 @media (max-width:600px){.t-rbs .rbs-search em{display:none}.t-rbs .rbs-cards{grid-template-columns:repeat(2,1fr)}.t-rbs .rbs-cards i:nth-child(n+3){display:none}}
 
 /* compact work grid */
-.work{grid-template-columns:repeat(6,1fr);gap:18px}
-.work .card{grid-column:span 2;border-radius:16px}
-.work .card:nth-last-child(-n+2):nth-child(3n+1),.work .card:nth-last-child(-n+2):nth-child(3n+1)~.card{grid-column:span 3}
+.work{grid-template-columns:repeat(6,1fr);gap:18px;grid-auto-rows:1fr}
+@media (max-width:640px){.work{grid-auto-rows:auto}}
+.work .card{grid-column:span 2;border-radius:16px;display:flex;flex-direction:column}
+.work .thumb{flex:none}
+.work .card-body{flex:1;display:flex;flex-direction:column}
+.work .card-actions{margin-top:auto;padding-top:12px}
+.work .card.cta-card{border:1.5px dashed #3e4a62;background:linear-gradient(160deg,rgba(77,226,234,.06),transparent 60%),var(--panel)}
+.t-next{background:radial-gradient(circle at 50% 55%,rgba(77,226,234,.12),transparent 60%),var(--ink);display:grid;place-items:center;border-bottom:1.5px dashed #3e4a62}
+.t-next .plus{width:84px;height:84px;border-radius:22px;border:1.5px solid var(--signal);display:grid;place-items:center;font:300 44px/1 var(--body);color:var(--signal);position:relative;animation:nxt 3s ease-in-out infinite}
+.t-next .plus::before,.t-next .plus::after{content:"";position:absolute;inset:-12px;border-radius:28px;border:1px solid rgba(77,226,234,.35);animation:nxr 3s ease-out infinite}
+.t-next .plus::after{animation-delay:1.5s}
+@keyframes nxt{50%{transform:rotate(90deg) scale(1.06)}}
+@keyframes nxr{from{opacity:1;transform:scale(.9)}to{opacity:0;transform:scale(1.5)}}
+.t-next .code{position:absolute;font:500 11px var(--mono);color:#55617a;white-space:nowrap}
+.t-next .c1{left:8%;top:18px}.t-next .c2{right:8%;bottom:16px}
 .work .thumb{height:200px}
 .work .card-body{padding:16px 18px 18px;gap:8px}
 .work .card h3{font-size:21px}
 .work .card p{font-size:14px;line-height:1.5}
 .work .stack span{font-size:10px;padding:3px 7px}
-.work .card-actions{margin-top:4px;gap:8px}
+.work .card-actions{margin-top:auto;padding-top:12px;gap:8px}
 .work .card-actions .btn{padding:8px 13px;font-size:12.5px}
-@media (max-width:1000px){.work .card,.work .card:nth-last-child(-n+2):nth-child(3n+1),.work .card:nth-last-child(-n+2):nth-child(3n+1)~.card{grid-column:span 3}.work .card:last-child:nth-child(odd){grid-column:span 6}}
-@media (max-width:640px){.work .card,.work .card:nth-last-child(-n+2):nth-child(3n+1),.work .card:nth-last-child(-n+2):nth-child(3n+1)~.card,.work .card:last-child:nth-child(odd){grid-column:span 6}.work .thumb{height:190px}}
+@media (max-width:1000px){.work .card{grid-column:span 3}}
+@media (max-width:640px){.work .card{grid-column:span 6}.work .thumb{height:190px}}
 /* thumbnails tuned for the shorter frame */
 .t-orbit .o1{width:84px;height:84px}.t-orbit .o2{width:140px;height:140px}.t-orbit .o3{width:200px;height:200px}.t-orbit .core{font-size:32px}
 .t-cow .cw-card{top:24px;bottom:22px;left:10%;right:10%;padding:10px;gap:6px}
@@ -456,6 +468,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
           <div class="card-top"><span class="tag">SaaS · Landing</span><span class="tag mono">02</span></div>
           <h3>Orbit</h3>
           <p>A launch page for an AI workflow tool, with a pricing toggle and feature tabs.</p>
+          <div class="stack"><span>3D hero</span><span>Live workflow</span><span>Pricing toggle</span></div>
           <div class="card-actions"><button class="btn primary" data-preview="demos/orbit.html" data-name="Orbit">Preview <span class="arr">→</span></button><a class="btn" href="demos/orbit.html">Open full screen ↗</a></div>
         </div>
       </article>
@@ -501,6 +514,17 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
           <p>A Nigerian property marketplace where people rent, buy or book shortlets across all 36 states, with verified agents, WhatsApp contact and listing tools for owners.</p>
           <div class="stack"><span>Property search</span><span>Agent dashboard</span><span>KYC verification</span><span>Shortlets</span></div>
           <div class="card-actions"><button class="btn primary" data-preview="https://rentbuystay.com" data-external="1" data-name="RentBuyStay">Preview <span class="arr">→</span></button><a class="btn" href="https://rentbuystay.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        </div>
+      </article>
+
+      <article class="card cta-card rv" data-cat="cta">
+        <div class="thumb t-next"><span class="code c1">&lt;YourBrand /&gt;</span><div class="plus">+</div><span class="code c2">// ships in 2–6 weeks</span></div>
+        <div class="card-body">
+          <div class="card-top"><span class="tag">Your business · Next up</span><span class="tag mono">06</span></div>
+          <h3>Your project here</h3>
+          <p>A store, a booking site, a school portal or a company website. Tell us the idea and we'll send back a plan and a quote within a day.</p>
+          <div class="stack"><span>Free first call</span><span>Fixed quote</span><span>Weekly previews</span></div>
+          <div class="card-actions"><a class="btn primary" href="#contact">Start a project <span class="arr">→</span></a><a class="btn" href="#process">How we work</a></div>
         </div>
       </article>
 
@@ -766,7 +790,7 @@ $$('.card').forEach(c=>{
 /* filters */
 $$('.chip').forEach(ch=>ch.onclick=()=>{
   $$('.chip').forEach(c=>c.classList.toggle('on',c===ch));
-  const f=ch.dataset.f;$$('#workGrid .card').forEach(c=>{const show=f==='all'||c.dataset.cat===f;c.classList.toggle('hide',!show);if(show){c.animate([{opacity:0,transform:'translateY(20px) scale(.98)'},{opacity:1,transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'})}});
+  const f=ch.dataset.f;$$('#workGrid .card').forEach(c=>{const show=f==='all'||c.dataset.cat===f||c.dataset.cat==='cta';c.classList.toggle('hide',!show);if(show){c.animate([{opacity:0,transform:'translateY(20px) scale(.98)'},{opacity:1,transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'})}});
 });
 
 /* preview modal */
