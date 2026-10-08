@@ -209,6 +209,29 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .t-cow .cw-coin{position:absolute;right:7%;top:16px;width:58px;height:58px;border-radius:50%;background:#ffd23f;border:2.5px solid #111;display:grid;place-items:center;font:900 24px var(--body);color:#111;animation:cwflip 3.4s linear infinite;box-shadow:inset -4px -5px 0 rgba(0,0,0,.14)}
 .t-cow .cw-coin.c2{right:auto;left:6%;top:auto;bottom:18px;width:44px;height:44px;font-size:18px;background:#ffb020;animation-duration:4.4s}
 @keyframes cwflip{to{transform:rotateY(360deg)}}
+.t-rbs{background:linear-gradient(135deg,#2a3346,#1c2333);display:grid;place-items:end center;padding:26px 6% 0}
+.t-rbs .rbs-win{width:min(820px,100%);height:100%;background:#fff;border-radius:12px 12px 0 0;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);display:flex;flex-direction:column;transform:translateY(8px);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .t-rbs .rbs-win{transform:translateY(0)}
+.t-rbs .rbs-bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:#eef0f4;border-bottom:1px solid #dde1e8}
+.t-rbs .rbs-bar i{width:9px;height:9px;border-radius:50%;background:#cfd4dc}
+.t-rbs .rbs-bar span{margin-left:10px;font:500 11px var(--mono);color:#556;background:#fff;padding:3px 14px;border-radius:6px}
+.t-rbs .rbs-hero{flex:1;background:linear-gradient(90deg,rgba(18,24,38,.82),rgba(18,24,38,.35)),repeating-linear-gradient(90deg,#c8b49a 0 60px,#b9a386 60px 64px),linear-gradient(#e9dfd0,#cbb79d);background-blend-mode:normal;display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden}
+.t-rbs .rbs-hero::after{content:"";position:absolute;right:8%;bottom:0;width:30%;height:42%;background:#7d8b74;border-radius:40px 40px 0 0;box-shadow:-120px 10px 0 -10px #5d4a3a}
+.t-rbs .rbs-txt{position:relative;z-index:1;display:grid;gap:4px;color:#fff;max-width:78%}
+.t-rbs .rbs-txt b{font:800 clamp(16px,2.2vw,24px)/1.1 var(--body)}
+.t-rbs .rbs-txt small{font-size:11px;opacity:.85}
+.t-rbs .rbs-search{margin-top:8px;display:flex;align-items:center;gap:6px;background:#fff;color:#223;border-radius:10px;padding:6px;font:600 11px var(--body);flex-wrap:wrap}
+.t-rbs .rbs-search span{padding:4px 9px;border-radius:6px;color:#667}
+.t-rbs .rbs-search span.on{background:#0f766e;color:#fff}
+.t-rbs .rbs-search em{font-style:normal;color:#889;padding:0 8px;border-left:1px solid #e3e6ec}
+.t-rbs .rbs-search strong{margin-left:auto;background:#f59e0b;color:#1b1b1b;padding:5px 12px;border-radius:6px;animation:rbsP 2.4s ease-in-out infinite}
+@keyframes rbsP{50%{transform:scale(1.06)}}
+.t-rbs .rbs-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px;background:#f6f7f9;height:34%}
+.t-rbs .rbs-cards i{border-radius:8px;background:linear-gradient(#d9cfc0 55%,#fff 55%);border:1px solid #e5e7eb;animation:rbsC 3s ease-in-out infinite}
+.t-rbs .rbs-cards i:nth-child(2){animation-delay:-.7s;background:linear-gradient(#b9c7d6 55%,#fff 55%)}.t-rbs .rbs-cards i:nth-child(3){animation-delay:-1.4s;background:linear-gradient(#cdd8c4 55%,#fff 55%)}.t-rbs .rbs-cards i:nth-child(4){animation-delay:-2.1s;background:linear-gradient(#e2c9b8 55%,#fff 55%)}
+@keyframes rbsC{50%{transform:translateY(-4px)}}
+.t-rbs .rbs-live{position:absolute;top:14px;left:16px;font:600 11px var(--mono);letter-spacing:.06em;color:var(--ok);background:rgba(91,227,143,.1);border:1px solid rgba(91,227,143,.35);padding:5px 10px;border-radius:999px}
+@media (max-width:600px){.t-rbs .rbs-search em{display:none}.t-rbs .rbs-cards{grid-template-columns:repeat(2,1fr)}.t-rbs .rbs-cards i:nth-child(n+3){display:none}}
 /* modal */
 .modal{position:fixed;inset:0;z-index:150;background:rgba(3,5,9,.86);backdrop-filter:blur(10px);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));gap:14px;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal.open{opacity:1;pointer-events:auto}
@@ -427,6 +450,22 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
           <p>Property search with filters, saved homes, a map view and a mortgage calculator.</p>
           <div class="stack"><span>Search &amp; filter</span><span>Map pins</span><span>Calculator</span></div>
           <div class="card-actions"><button class="btn primary" data-preview="demos/haven.html" data-name="Haven Homes">Preview <span class="arr">→</span></button><a class="btn" href="demos/haven.html">Open full screen ↗</a></div>
+        </div>
+      </article>
+
+      <article class="card rv" data-cat="realestate" style="grid-column:span 6">
+        <div class="thumb t-rbs"><div class="rbs-win">
+          <div class="rbs-bar"><i></i><i></i><i></i><span>rentbuystay.com</span></div>
+          <div class="rbs-hero"><div class="rbs-txt"><b>Find Your Perfect Home in Nigeria</b><small>Rent · Buy · Shortlet across all 36 states</small>
+            <div class="rbs-search"><span class="on">Rent</span><span>Buy</span><span>Shortlet</span><em>Lagos · 3 bed · ₦2M–₦5M</em><strong>Search</strong></div></div></div>
+          <div class="rbs-cards"><i></i><i></i><i></i><i></i></div>
+        </div><span class="rbs-live">● Live client site</span></div>
+        <div class="card-body">
+          <div class="card-top"><span class="tag">Real estate · Live marketplace</span><span class="tag mono">05</span></div>
+          <h3>RentBuyStay</h3>
+          <p>A Nigerian property marketplace where people rent, buy or book shortlets across all 36 states, with verified agents, WhatsApp contact and listing tools for owners.</p>
+          <div class="stack"><span>Property search</span><span>Agent dashboard</span><span>KYC verification</span><span>Shortlets</span></div>
+          <div class="card-actions"><a class="btn primary" href="https://rentbuystay.com" target="_blank" rel="noopener">Visit live site <span class="arr">↗</span></a></div>
         </div>
       </article>
 
