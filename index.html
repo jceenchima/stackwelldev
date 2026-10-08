@@ -164,21 +164,23 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .card-actions .btn{padding:10px 16px;font-size:13px}
 
 /* thumbnails (pure CSS mini-UIs) */
-.t-pay{background:radial-gradient(120% 90% at 100% 0,#1b1640,#0a0d18)}
-.t-pay .ph{position:absolute;left:50%;top:34px;transform:translateX(-50%);width:200px;height:300px;border-radius:26px;background:#0f1322;border:1px solid #262d48;padding:18px;box-shadow:0 30px 60px -10px #000;transition:transform .5s}
+.t-pay{background:#f2f3ee}
+.t-pay .ph{position:absolute;left:50%;top:34px;transform:translateX(-50%);width:210px;height:300px;border-radius:28px;background:#fff;border:1px solid #e2e4db;padding:16px;box-shadow:0 30px 60px -20px rgba(15,26,20,.35);transition:transform .5s}
 .card:hover .t-pay .ph{transform:translateX(-50%) translateY(-10px) rotate(-2deg)}
-.t-pay .bal{font:600 10px var(--mono);color:#8a8fb5}
-.t-pay .amt{font:800 24px var(--display);color:#fff;margin:4px 0 14px}
-.t-pay .bars{display:flex;align-items:end;gap:6px;height:80px}
-.t-pay .bars i{flex:1;border-radius:4px;background:linear-gradient(#9b8cff,#5b4bd6);animation:bar 2.4s ease-in-out infinite alternate}
-.t-pay .bars i:nth-child(2n){animation-delay:-.6s;background:linear-gradient(#4de2ea,#2a8f9a)}
+.t-pay .bx{background:#0b7a53;border-radius:16px;padding:12px;color:#fff}
+.t-pay .bal{font:600 9px var(--mono);opacity:.75}
+.t-pay .amt{font:800 22px var(--body);margin:2px 0 8px}
+.t-pay .bars{display:flex;align-items:end;gap:5px;height:54px}
+.t-pay .bars i{flex:1;border-radius:4px;background:rgba(255,255,255,.85);animation:bar 2.4s ease-in-out infinite alternate}
+.t-pay .bars i:nth-child(2n){animation-delay:-.6s;background:#f5b400}
 .t-pay .bars i:nth-child(3n){animation-delay:-1.2s}
 @keyframes bar{from{height:25%}to{height:95%}}
-.t-pay .row{height:22px;border-radius:6px;background:#181e33;margin-top:8px;position:relative}
-.t-pay .row::before{content:"";position:absolute;left:6px;top:5px;width:12px;height:12px;border-radius:50%;background:#ffb24a}
-.t-pay .chipcard{position:absolute;right:30px;bottom:30px;width:150px;height:92px;border-radius:12px;background:linear-gradient(135deg,#ffb24a,#ff6a88);transform:rotate(8deg);box-shadow:0 20px 40px -10px #000;animation:floaty 5s ease-in-out infinite}
-.t-pay .chipcard::after{content:"•••• 4021";position:absolute;left:12px;bottom:10px;font:600 11px var(--mono);color:#2a0f14}
-
+.t-pay .row{height:24px;border-radius:8px;background:#f2f3ee;margin-top:9px;position:relative}
+.t-pay .row::before{content:"";position:absolute;left:6px;top:5px;width:14px;height:14px;border-radius:50%;background:#0b7a53}
+.t-pay .row:nth-child(4)::before{background:#f5b400}
+.t-pay .chipcard{position:absolute;right:30px;bottom:30px;width:150px;height:92px;border-radius:12px;background:linear-gradient(135deg,#0f1a14,#1f3a2c);transform:rotate(8deg);box-shadow:0 20px 40px -10px rgba(0,0,0,.4);animation:floaty 5s ease-in-out infinite}
+.t-pay .chipcard::before{content:"";position:absolute;left:12px;top:12px;width:26px;height:18px;border-radius:4px;background:#f5b400}
+.t-pay .chipcard::after{content:"•••• 4021";position:absolute;left:12px;bottom:10px;font:600 11px var(--mono);color:#fff}
 .t-adire{background:#f2ebe0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:10px;padding:14px}
 .t-adire i{border-radius:10px;animation:swatch 6s ease-in-out infinite;background-size:22px 22px}
 .t-adire i:nth-child(1){background-color:#1e2a6b;background-image:radial-gradient(circle,#f2ebe0 3px,transparent 4px)}
@@ -200,32 +202,18 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .t-haven .pin:nth-of-type(2){animation-delay:-1.5s}
 @keyframes bob{50%{transform:translateY(-8px)}}
 
-.t-orbit{background:radial-gradient(circle at 50% 55%,#13213b,#05070c 70%)}
-.t-orbit .o{position:absolute;left:50%;top:50%;border-radius:50%;border:1px dashed rgba(77,226,234,.3);transform:translate(-50%,-50%)}
-.t-orbit .o i{position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:var(--signal);box-shadow:0 0 16px var(--signal)}
+.t-orbit{background:#fafaf7}
+.t-orbit .o{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid #dcdbd2;transform:translate(-50%,-50%)}
+.t-orbit .o i{position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#ff5b1f}
 .t-orbit .o1{width:120px;height:120px;animation:spin 6s linear infinite}
 .t-orbit .o2{width:200px;height:200px;animation:spin 10s linear infinite reverse}
-.t-orbit .o2 i{background:var(--heat);box-shadow:0 0 16px var(--heat)}
-.t-orbit .o3{width:290px;height:290px;animation:spin 16s linear infinite}
-.t-orbit .o3 i{background:var(--violet);box-shadow:0 0 16px var(--violet)}
+.t-orbit .o2 i{background:#131313}
+.t-orbit .o3{width:290px;height:290px;animation:spin 16s linear infinite;border-style:dashed}
+.t-orbit .o3 i{background:#2b59ff}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.t-orbit .core{position:absolute;left:50%;top:50%;width:54px;height:54px;transform:translate(-50%,-50%);border-radius:14px;background:linear-gradient(135deg,var(--signal),var(--violet));box-shadow:0 0 50px rgba(77,226,234,.5);animation:corepulse 3s ease-in-out infinite}
-@keyframes corepulse{50%{transform:translate(-50%,-50%) scale(1.12) rotate(45deg)}}
-
-.t-campus{background:#eef2fb;padding:20px;display:grid;grid-template-columns:70px 1fr;gap:12px}
-.t-campus .side{background:#16306b;border-radius:12px}
-.t-campus .main{display:grid;grid-template-rows:auto 1fr;gap:12px}
-.t-campus .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.t-campus .kpis i{height:56px;border-radius:10px;background:#fff;border:1px solid #d9e1f2;position:relative;overflow:hidden}
-.t-campus .kpis i::after{content:"";position:absolute;left:10px;bottom:10px;height:6px;border-radius:3px;background:#f2b233;animation:grow 3s ease-in-out infinite alternate;width:30%}
-.t-campus .kpis i:nth-child(2)::after{background:#2a9d6f;animation-delay:-1s}
-.t-campus .kpis i:nth-child(3)::after{background:#3b6fe0;animation-delay:-2s}
-@keyframes grow{to{width:75%}}
-.t-campus .tt{background:#fff;border-radius:10px;border:1px solid #d9e1f2;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:10px}
-.t-campus .tt i{border-radius:5px;background:#e4eafa}
-.t-campus .tt i.a{background:#3b6fe0}.t-campus .tt i.b{background:#f2b233}.t-campus .tt i.c{background:#2a9d6f}
-.t-campus .tt i.a,.t-campus .tt i.b,.t-campus .tt i.c{animation:flash 4s infinite}
-@keyframes flash{50%{opacity:.55}}
+.t-orbit .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:italic 400 44px Georgia,serif;color:#131313;letter-spacing:-.02em}
+.t-orbit .core::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:3px;background:#ff5b1f;animation:grow2 2.4s ease-in-out infinite alternate;transform-origin:left}
+@keyframes grow2{from{transform:scaleX(.2)}}
 
 /* modal */
 .modal{position:fixed;inset:0;z-index:150;background:rgba(3,5,9,.86);backdrop-filter:blur(10px);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));gap:14px;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -368,7 +356,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         <a href="#contact" class="btn magnetic">Book a free call</a>
       </div>
       <div class="stats">
-        <div class="stat"><b data-count="5">0</b><span>live demo builds</span></div>
+        <div class="stat"><b data-count="4">0</b><span>live demo builds</span></div>
         <div class="stat"><b data-count="100" data-suffix="%">0</b><span>mobile-first layouts</span></div>
         <div class="stat"><b data-count="6" data-prefix="2–">0</b><span>weeks typical delivery</span></div>
       </div>
@@ -396,12 +384,11 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
       <button class="chip" data-f="commerce">E-commerce</button>
       <button class="chip" data-f="realestate">Real estate</button>
       <button class="chip" data-f="saas">SaaS</button>
-      <button class="chip" data-f="education">Education</button>
     </div>
     <div class="work" id="workGrid">
 
       <article class="card wide rv" data-cat="fintech">
-        <div class="thumb t-pay"><div class="ph"><div class="bal">TOTAL BALANCE</div><div class="amt">₦2,481,900</div><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="row"></div><div class="row"></div><div class="row"></div></div><div class="chipcard"></div></div>
+        <div class="thumb t-pay"><div class="ph"><div class="bx"><div class="bal">TOTAL BALANCE</div><div class="amt">₦2,481,900</div><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="row"></div><div class="row"></div><div class="row"></div></div><div class="chipcard"></div></div>
         <div class="card-body">
           <div class="card-top"><span class="tag">Fintech · Web app</span><span class="tag mono">01</span></div>
           <h3>Paylane</h3>
@@ -412,7 +399,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
       </article>
 
       <article class="card narrow rv" data-cat="saas">
-        <div class="thumb t-orbit"><div class="o o3"><i></i></div><div class="o o2"><i></i></div><div class="o o1"><i></i></div><div class="core"></div></div>
+        <div class="thumb t-orbit"><div class="o o3"><i></i></div><div class="o o2"><i></i></div><div class="o o1"><i></i></div><div class="core">orbit.</div></div>
         <div class="card-body">
           <div class="card-top"><span class="tag">SaaS · Landing</span><span class="tag mono">02</span></div>
           <h3>Orbit</h3>
@@ -443,17 +430,6 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
           <p>Property search with filters, saved homes, a map view and a mortgage calculator.</p>
           <div class="stack"><span>Search &amp; filter</span><span>Map pins</span><span>Calculator</span></div>
           <div class="card-actions"><button class="btn primary" data-preview="demos/haven.html" data-name="Haven Homes">Preview <span class="arr">→</span></button><a class="btn" href="demos/haven.html">Open full screen ↗</a></div>
-        </div>
-      </article>
-
-      <article class="card wide rv" data-cat="education" style="grid-column:span 6">
-        <div class="thumb t-campus"><div class="side"></div><div class="main"><div class="kpis"><i></i><i></i><i></i></div><div class="tt"><i class="a"></i><i></i><i class="b"></i><i></i><i class="c"></i><i></i><i class="c"></i><i class="a"></i><i></i><i class="b"></i><i class="b"></i><i></i><i></i><i class="a"></i><i></i></div></div></div>
-        <div class="card-body">
-          <div class="card-top"><span class="tag">Education · Student portal</span><span class="tag mono">05</span></div>
-          <h3>Campus Portal</h3>
-          <p>A student portal for a Nigerian university: results with GPA, course registration, timetable, fees and notices.</p>
-          <div class="stack"><span>Portal UI</span><span>Course registration</span><span>Results &amp; CGPA</span><span>Fees</span></div>
-          <div class="card-actions"><button class="btn primary" data-preview="demos/campus.html" data-name="Campus Portal">Preview <span class="arr">→</span></button><a class="btn" href="demos/campus.html">Open full screen ↗</a></div>
         </div>
       </article>
 
