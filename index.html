@@ -216,6 +216,13 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .t-rbs .rbs-bar i{width:9px;height:9px;border-radius:50%;background:#cfd4dc}
 .t-rbs .rbs-bar span{margin-left:10px;font:500 11px var(--mono);color:#556;background:#fff;padding:3px 14px;border-radius:6px}
 .t-rbs .rbs-hero{flex:1;background:linear-gradient(90deg,rgba(18,24,38,.82),rgba(18,24,38,.35)),repeating-linear-gradient(90deg,#c8b49a 0 60px,#b9a386 60px 64px),linear-gradient(#e9dfd0,#cbb79d);background-blend-mode:normal;display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden}
+.t-rbs .rbs-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.card:hover .t-rbs .rbs-img{transform:scale(1.05)}
+.t-rbs .rbs-img+.rbs-logo~.rbs-txt{text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.t-rbs .rbs-hero:has(.rbs-img)::after{display:none}
+.t-rbs .rbs-hero:has(.rbs-img)::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(10,14,24,.72),rgba(10,14,24,.15) 70%)}
+.t-rbs .rbs-logo{position:absolute;top:10px;left:5%;height:22px;width:auto;z-index:2;background:#fff;padding:4px 8px;border-radius:6px}
+.t-rbs .rbs-hero:has(.rbs-logo) .rbs-txt{margin-top:22px}
 .t-rbs .rbs-hero::after{content:"";position:absolute;right:8%;bottom:0;width:30%;height:42%;background:#7d8b74;border-radius:40px 40px 0 0;box-shadow:-120px 10px 0 -10px #5d4a3a}
 .t-rbs .rbs-txt{position:relative;z-index:1;display:grid;gap:4px;color:#fff;max-width:78%}
 .t-rbs .rbs-txt b{font:800 clamp(16px,2.2vw,24px)/1.1 var(--body)}
@@ -248,6 +255,13 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .frame.tablet{max-width:820px;border-radius:26px;border:10px solid #1a2030}
 .frame.phone{max-width:390px;max-height:800px;border-radius:40px;border:10px solid #1a2030}
 .frame iframe{width:100%;height:100%;border:0;display:block}
+.snap{width:100%;height:100%;overflow-y:auto;background:#f3f4f6;position:relative;-webkit-overflow-scrolling:touch}
+.snap img{display:block;width:100%;height:auto;opacity:0;transition:opacity .5s}
+.snap img.ok{opacity:1}
+.snap-msg{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;color:#445;font-size:14px;text-align:center;padding:20px}
+.snap-msg .spin{width:34px;height:34px;border-radius:50%;border:3px solid #d5d9e0;border-top-color:#0f766e;animation:spin360 .8s linear infinite}
+@keyframes spin360{to{transform:rotate(360deg)}}
+.snap-msg button{background:#0f766e;color:#fff;border:0;border-radius:999px;padding:9px 16px;font-weight:600}
 
 /* services */
 .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -456,7 +470,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
       <article class="card rv" data-cat="realestate" style="grid-column:span 6">
         <div class="thumb t-rbs"><div class="rbs-win">
           <div class="rbs-bar"><i></i><i></i><i></i><span>rentbuystay.com</span></div>
-          <div class="rbs-hero"><div class="rbs-txt"><b>Find Your Perfect Home in Nigeria</b><small>Rent · Buy · Shortlet across all 36 states</small>
+          <div class="rbs-hero"><img class="rbs-img" src="https://www.rentbuystay.com/_next/image?url=%2Fimages%2Fhero-bg.png&amp;w=1920&amp;q=75" alt="RentBuyStay homepage hero" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://www.rentbuystay.com/images/hero-bg.png'}else{this.remove()}"><img class="rbs-logo" src="https://www.rentbuystay.com/images/logo.svg" alt="RentBuyStay logo" loading="lazy" onerror="this.remove()"><div class="rbs-txt"><b>Find Your Perfect Home in Nigeria</b><small>Rent · Buy · Shortlet across all 36 states</small>
             <div class="rbs-search"><span class="on">Rent</span><span>Buy</span><span>Shortlet</span><em>Lagos · 3 bed · ₦2M–₦5M</em><strong>Search</strong></div></div></div>
           <div class="rbs-cards"><i></i><i></i><i></i><i></i></div>
         </div><span class="rbs-live">● Live client site</span></div>
@@ -465,7 +479,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
           <h3>RentBuyStay</h3>
           <p>A Nigerian property marketplace where people rent, buy or book shortlets across all 36 states, with verified agents, WhatsApp contact and listing tools for owners.</p>
           <div class="stack"><span>Property search</span><span>Agent dashboard</span><span>KYC verification</span><span>Shortlets</span></div>
-          <div class="card-actions"><a class="btn primary" href="https://rentbuystay.com" target="_blank" rel="noopener">Visit live site <span class="arr">↗</span></a></div>
+          <div class="card-actions"><button class="btn primary" data-preview="https://rentbuystay.com" data-external="1" data-name="RentBuyStay">Preview <span class="arr">→</span></button><a class="btn" href="https://rentbuystay.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
         </div>
       </article>
 
@@ -586,12 +600,13 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal-bar">
     <div class="modal-title" id="mTitle">Preview</div>
+    <div class="devices" id="modes" hidden><button class="on" data-m="snap">Snapshot</button><button data-m="live">Live site</button></div>
     <div class="devices" id="devices">
       <button class="on" data-d="desktop">Desktop</button><button data-d="tablet">Tablet</button><button data-d="phone">Phone</button>
     </div>
     <div class="modal-actions"><a class="btn" id="mOpen" href="#">Open full screen ↗</a><button class="btn" id="mClose" aria-label="Close preview">Close ✕</button></div>
   </div>
-  <div class="stage"><div class="frame" id="frame"><iframe id="mFrame" title="Demo preview"></iframe></div></div>
+  <div class="stage"><div class="frame" id="frame"><iframe id="mFrame" title="Demo preview"></iframe><div class="snap" id="snap" hidden><div class="snap-msg" id="snapMsg"><span class="spin"></span>Capturing a fresh snapshot of the live site…</div><img id="snapImg" alt="Full-page snapshot of the website"></div></div></div>
 </div>
 
 <script>
@@ -734,16 +749,26 @@ $$('.chip').forEach(ch=>ch.onclick=()=>{
 });
 
 /* preview modal */
-const modal=$('#modal'),frame=$('#frame'),ifr=$('#mFrame');let lastFocus;
+const modal=$('#modal'),frame=$('#frame'),ifr=$('#mFrame'),snap=$('#snap'),snapImg=$('#snapImg'),snapMsg=$('#snapMsg');let lastFocus,cur={url:'',ext:false,mode:'snap',dev:'desktop'};
+const VW={desktop:[1366,1280],tablet:[820,800],phone:[390,390]};
+function snapUrls(u,d){const [vw,w]=VW[d];return [`https://image.thum.io/get/width/${w}/viewportWidth/${vw}/fullpage/noanimate/${u}`,`https://s0.wp.com/mshots/v1/${encodeURIComponent(u)}?w=${w}&vpw=${vw}&vph=${Math.round(vw*2.6)}`]}
+function loadSnap(){const urls=snapUrls(cur.url,cur.dev);let i=0;snapImg.classList.remove('ok');snapMsg.hidden=false;snapMsg.innerHTML='<span class="spin"></span>Capturing a fresh snapshot of the live site…';snap.scrollTop=0;
+  let tries=0;snapImg.onload=()=>{if(snapImg.naturalWidth<50){snapImg.onerror();return}if(snapImg.naturalHeight<snapImg.naturalWidth*1.1&&tries<6){tries++;const base=urls[i];setTimeout(()=>{if(!snap.hidden)snapImg.src=base+(base.includes('?')?'&':'?')+'r='+tries},2500);return}snapImg.classList.add('ok');snapMsg.hidden=true};
+  snapImg.onerror=()=>{i++;if(i<urls.length){snapImg.src=urls[i];return}snapMsg.innerHTML='The snapshot service did not answer.<button type="button" id="goLive">Show the live site instead</button>';$('#goLive').onclick=()=>setMode('live')};
+  snapImg.src=urls[0]}
+function setMode(m){cur.mode=m;$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  if(!cur.ext||m==='live'){snap.hidden=true;ifr.hidden=false;if(ifr.getAttribute('src')!==cur.url)ifr.src=cur.url}
+  else{ifr.hidden=true;ifr.removeAttribute('src');snap.hidden=false;loadSnap()}}
 $$('[data-preview]').forEach(b=>b.onclick=()=>{
-  lastFocus=b;ifr.src=b.dataset.preview;$('#mOpen').href=b.dataset.preview;$('#mTitle').innerHTML=b.dataset.name;
-  setDevice(innerWidth<700?'phone':'desktop');modal.classList.add('open');document.body.style.overflow='hidden';$('#mClose').focus();
+  lastFocus=b;cur.url=b.dataset.preview;cur.ext=!!b.dataset.external;$('#mOpen').href=cur.url;$('#mOpen').target=cur.ext?'_blank':'';$('#mOpen').rel=cur.ext?'noopener':'';$('#mOpen').innerHTML=cur.ext?'Visit site ↗':'Open full screen ↗';$('#mTitle').innerHTML=b.dataset.name;
+  $('#modes').hidden=!cur.ext;setDevice(innerWidth<700?'phone':'desktop',true);setMode(cur.ext?'snap':'live');modal.classList.add('open');document.body.style.overflow='hidden';$('#mClose').focus();
 });
-function closeModal(){modal.classList.remove('open');document.body.style.overflow='';setTimeout(()=>ifr.src='about:blank',300);lastFocus&&lastFocus.focus()}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{ifr.src='about:blank';snapImg.removeAttribute('src')},300);lastFocus&&lastFocus.focus()}
 $('#mClose').onclick=closeModal;
 addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
-function setDevice(d){frame.className='frame '+(d==='desktop'?'':d);$$('#devices button').forEach(b=>b.classList.toggle('on',b.dataset.d===d))}
+function setDevice(d,quiet){cur.dev=d;frame.className='frame '+(d==='desktop'?'':d);$$('#devices button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));if(!quiet&&cur.ext&&cur.mode==='snap')loadSnap()}
 $$('#devices button').forEach(b=>b.onclick=()=>setDevice(b.dataset.d));
+$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
 
 /* copy */
 async function copyText(txt,node){try{await navigator.clipboard.writeText(txt);say('Copied')}catch(e){const r=document.createRange();r.selectNodeContents(node);const s=getSelection();s.removeAllRanges();s.addRange(r);say('Selected — press copy')}}
