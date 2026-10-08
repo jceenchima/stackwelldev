@@ -288,12 +288,13 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .frame.tablet{max-width:820px;border-radius:26px;border:10px solid #1a2030}
 .frame.phone{max-width:390px;max-height:800px;border-radius:40px;border:10px solid #1a2030}
 .frame iframe{width:100%;height:100%;border:0;display:block}
-.snap{width:100%;height:100%;overflow-y:auto;background:#f3f4f6;position:relative;-webkit-overflow-scrolling:touch}
-.snap img{display:block;width:100%;height:auto;opacity:0;transition:opacity .5s}
-.snap img.ok{opacity:1}
+.frame{position:relative}
+.loader{position:absolute;inset:0;background:#f3f4f6;transition:opacity .4s;z-index:2}
+.loader.done{opacity:0;pointer-events:none}
 .snap-msg{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;color:#445;font-size:14px;text-align:center;padding:20px}
-.snap-msg .spin{width:34px;height:34px;border-radius:50%;border:3px solid #d5d9e0;border-top-color:#0f766e;animation:spin360 .8s linear infinite}
+.snap-msg .spin{width:34px;height:34px;border-radius:50%;border:3px solid #d5d9e0;border-top-color:#1aa6ae;animation:spin360 .8s linear infinite}
 @keyframes spin360{to{transform:rotate(360deg)}}
+.snap-msg a{background:#151b28;color:#fff;border-radius:999px;padding:9px 16px;font-weight:600;text-decoration:none}
 .snap-msg button{background:#0f766e;color:#fff;border:0;border-radius:999px;padding:9px 16px;font-weight:600}
 
 /* services */
@@ -513,7 +514,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
           <h3>RentBuyStay</h3>
           <p>A Nigerian property marketplace where people rent, buy or book shortlets across all 36 states, with verified agents, WhatsApp contact and listing tools for owners.</p>
           <div class="stack"><span>Property search</span><span>Agent dashboard</span><span>KYC verification</span><span>Shortlets</span></div>
-          <div class="card-actions"><button class="btn primary" data-preview="https://rentbuystay.com" data-external="1" data-name="RentBuyStay">Preview <span class="arr">→</span></button><a class="btn" href="https://rentbuystay.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
+          <div class="card-actions"><button class="btn primary" data-preview="https://www.rentbuystay.com/" data-external="1" data-name="RentBuyStay">Preview <span class="arr">→</span></button><a class="btn" href="https://rentbuystay.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
         </div>
       </article>
 
@@ -645,13 +646,12 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal-bar">
     <div class="modal-title" id="mTitle">Preview</div>
-    <div class="devices" id="modes" hidden><button class="on" data-m="snap">Snapshot</button><button data-m="live">Live site</button></div>
     <div class="devices" id="devices">
       <button class="on" data-d="desktop">Desktop</button><button data-d="tablet">Tablet</button><button data-d="phone">Phone</button>
     </div>
     <div class="modal-actions"><a class="btn" id="mOpen" href="#">Open full screen ↗</a><button class="btn" id="mClose" aria-label="Close preview">Close ✕</button></div>
   </div>
-  <div class="stage"><div class="frame" id="frame"><iframe id="mFrame" title="Demo preview"></iframe><div class="snap" id="snap" hidden><div class="snap-msg" id="snapMsg"><span class="spin"></span>Capturing a fresh snapshot of the live site…</div><img id="snapImg" alt="Full-page snapshot of the website"></div></div></div>
+  <div class="stage"><div class="frame" id="frame"><iframe id="mFrame" title="Demo preview"></iframe><div class="loader" id="loader"><div class="snap-msg" id="loadMsg"><span class="spin"></span><span id="loadTxt">Loading preview…</span></div></div></div></div>
 </div>
 
 <script>
@@ -794,26 +794,20 @@ $$('.chip').forEach(ch=>ch.onclick=()=>{
 });
 
 /* preview modal */
-const modal=$('#modal'),frame=$('#frame'),ifr=$('#mFrame'),snap=$('#snap'),snapImg=$('#snapImg'),snapMsg=$('#snapMsg');let lastFocus,cur={url:'',ext:false,mode:'snap',dev:'desktop'};
-const VW={desktop:[1366,1280],tablet:[820,800],phone:[390,390]};
-function snapUrls(u,d){const [vw,w]=VW[d];return [`https://image.thum.io/get/width/${w}/viewportWidth/${vw}/fullpage/noanimate/${u}`,`https://s0.wp.com/mshots/v1/${encodeURIComponent(u)}?w=${w}&vpw=${vw}&vph=${Math.round(vw*2.6)}`]}
-function loadSnap(){const urls=snapUrls(cur.url,cur.dev);let i=0;snapImg.classList.remove('ok');snapMsg.hidden=false;snapMsg.innerHTML='<span class="spin"></span>Capturing a fresh snapshot of the live site…';snap.scrollTop=0;
-  let tries=0;snapImg.onload=()=>{if(snapImg.naturalWidth<50){snapImg.onerror();return}if(snapImg.naturalHeight<snapImg.naturalWidth*1.1&&tries<6){tries++;const base=urls[i];setTimeout(()=>{if(!snap.hidden)snapImg.src=base+(base.includes('?')?'&':'?')+'r='+tries},2500);return}snapImg.classList.add('ok');snapMsg.hidden=true};
-  snapImg.onerror=()=>{i++;if(i<urls.length){snapImg.src=urls[i];return}snapMsg.innerHTML='The snapshot service did not answer.<button type="button" id="goLive">Show the live site instead</button>';$('#goLive').onclick=()=>setMode('live')};
-  snapImg.src=urls[0]}
-function setMode(m){cur.mode=m;$$('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
-  if(!cur.ext||m==='live'){snap.hidden=true;ifr.hidden=false;if(ifr.getAttribute('src')!==cur.url)ifr.src=cur.url}
-  else{ifr.hidden=true;ifr.removeAttribute('src');snap.hidden=false;loadSnap()}}
+const modal=$('#modal'),frame=$('#frame'),ifr=$('#mFrame'),loader=$('#loader');let lastFocus,slowT;
+function showLoader(ext){loader.classList.remove('done');$('#loadMsg').innerHTML='<span class="spin"></span><span>'+(ext?'Loading the live site…':'Loading preview…')+'</span>';clearTimeout(slowT);
+  slowT=setTimeout(()=>{if(!loader.classList.contains('done'))$('#loadMsg').innerHTML='<span class="spin"></span><span>Still loading. Slow connections can take a moment.</span><a href="'+ifr.dataset.u+'" target="_blank" rel="noopener">Open the site in a new tab ↗</a>'},9000)}
+ifr.addEventListener('load',()=>{if(ifr.getAttribute('src')&&ifr.getAttribute('src')!=='about:blank'){clearTimeout(slowT);loader.classList.add('done')}});
 $$('[data-preview]').forEach(b=>b.onclick=()=>{
-  lastFocus=b;cur.url=b.dataset.preview;cur.ext=!!b.dataset.external;$('#mOpen').href=cur.url;$('#mOpen').target=cur.ext?'_blank':'';$('#mOpen').rel=cur.ext?'noopener':'';$('#mOpen').innerHTML=cur.ext?'Visit site ↗':'Open full screen ↗';$('#mTitle').innerHTML=b.dataset.name;
-  $('#modes').hidden=!cur.ext;setDevice(innerWidth<700?'phone':'desktop',true);setMode(cur.ext?'snap':'live');modal.classList.add('open');document.body.style.overflow='hidden';$('#mClose').focus();
+  lastFocus=b;const u=b.dataset.preview,ext=!!b.dataset.external;ifr.dataset.u=u;
+  $('#mOpen').href=u;$('#mOpen').target=ext?'_blank':'';$('#mOpen').rel=ext?'noopener':'';$('#mOpen').innerHTML=ext?'Visit site ↗':'Open full screen ↗';$('#mTitle').innerHTML=b.dataset.name;
+  showLoader(ext);ifr.src=u;setDevice(innerWidth<700?'phone':'desktop');modal.classList.add('open');document.body.style.overflow='hidden';$('#mClose').focus();
 });
-function closeModal(){modal.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{ifr.src='about:blank';snapImg.removeAttribute('src')},300);lastFocus&&lastFocus.focus()}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';clearTimeout(slowT);setTimeout(()=>{ifr.src='about:blank';loader.classList.remove('done')},300);lastFocus&&lastFocus.focus()}
 $('#mClose').onclick=closeModal;
 addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
-function setDevice(d,quiet){cur.dev=d;frame.className='frame '+(d==='desktop'?'':d);$$('#devices button').forEach(b=>b.classList.toggle('on',b.dataset.d===d));if(!quiet&&cur.ext&&cur.mode==='snap')loadSnap()}
+function setDevice(d){frame.className='frame '+(d==='desktop'?'':d);$$('#devices button').forEach(b=>b.classList.toggle('on',b.dataset.d===d))}
 $$('#devices button').forEach(b=>b.onclick=()=>setDevice(b.dataset.d));
-$$('#modes button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
 
 /* copy */
 async function copyText(txt,node){try{await navigator.clipboard.writeText(txt);say('Copied')}catch(e){const r=document.createRange();r.selectNodeContents(node);const s=getSelection();s.removeAllRanges();s.addRange(r);say('Selected — press copy')}}
