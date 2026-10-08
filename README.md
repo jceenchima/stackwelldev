@@ -1,11 +1,10 @@
 # Stackwell Dev
 
-Agency website for Stackwell Dev, with four live demo frontends:
+Agency website for Stackwell Dev, with three live demo frontends:
 
 | Demo | File | What it shows |
 |---|---|---|
-| Paylane | `demos/paylane.html` | Fintech dashboard: balances, charts, card controls, send-money flow |
-| Adire & Co. | `demos/adire.html` | E-commerce store: filters, quick view, cart drawer, checkout |
+| Adire & Co. | `demos/adire.html` | Textile store: generative fabric, dye-process scroll story, pattern studio, garment preview, 3-step checkout |
 | Haven Homes | `demos/haven.html` | Real estate: search, map view, inspection booking, mortgage calculator |
 | Orbit | `demos/orbit.html` | SaaS landing page: animated hero, feature tabs, pricing toggle, FAQ |
 

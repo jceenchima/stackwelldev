@@ -164,40 +164,18 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);l
 .card-actions .btn{padding:10px 16px;font-size:13px}
 
 /* thumbnails (pure CSS mini-UIs) */
-.t-pay{background:#f2f3ee}
-.t-pay .ph{position:absolute;left:50%;top:34px;transform:translateX(-50%);width:210px;height:300px;border-radius:28px;background:#fff;border:1px solid #e2e4db;padding:16px;box-shadow:0 30px 60px -20px rgba(15,26,20,.35);transition:transform .5s}
-.card:hover .t-pay .ph{transform:translateX(-50%) translateY(-10px) rotate(-2deg)}
-.t-pay .bx{background:#0b7a53;border-radius:16px;padding:12px;color:#fff}
-.t-pay .bal{font:600 9px var(--mono);opacity:.75}
-.t-pay .amt{font:800 22px var(--body);margin:2px 0 8px}
-.t-pay .bars{display:flex;align-items:end;gap:5px;height:54px}
-.t-pay .bars i{flex:1;border-radius:4px;background:rgba(255,255,255,.85);animation:bar 2.4s ease-in-out infinite alternate}
-.t-pay .bars i:nth-child(2n){animation-delay:-.6s;background:#f5b400}
-.t-pay .bars i:nth-child(3n){animation-delay:-1.2s}
-@keyframes bar{from{height:25%}to{height:95%}}
-.t-pay .row{height:24px;border-radius:8px;background:#f2f3ee;margin-top:9px;position:relative}
-.t-pay .row::before{content:"";position:absolute;left:6px;top:5px;width:14px;height:14px;border-radius:50%;background:#0b7a53}
-.t-pay .row:nth-child(4)::before{background:#f5b400}
-.t-pay .chipcard{position:absolute;right:30px;bottom:30px;width:150px;height:92px;border-radius:12px;background:linear-gradient(135deg,#0f1a14,#1f3a2c);transform:rotate(8deg);box-shadow:0 20px 40px -10px rgba(0,0,0,.4);animation:floaty 5s ease-in-out infinite}
-.t-pay .chipcard::before{content:"";position:absolute;left:12px;top:12px;width:26px;height:18px;border-radius:4px;background:#f5b400}
-.t-pay .chipcard::after{content:"•••• 4021";position:absolute;left:12px;bottom:10px;font:600 11px var(--mono);color:#fff}
-.t-adire{background:#f2ebe0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:10px;padding:14px}
-.t-adire i{border-radius:10px;animation:swatch 6s ease-in-out infinite;background-size:22px 22px}
-.t-adire i:nth-child(1){background-color:#1e2a6b;background-image:radial-gradient(circle,#f2ebe0 3px,transparent 4px)}
-.t-adire i:nth-child(2){background-color:#c4532f;background-image:repeating-linear-gradient(45deg,#f0c36a 0 4px,transparent 4px 12px)}
-.t-adire i:nth-child(3){background-color:#2b4a3a;background-image:conic-gradient(from 45deg,#e8d9b5 25%,transparent 0 50%,#e8d9b5 0 75%,transparent 0)}
-.t-adire i:nth-child(4){background-color:#16204f;background-image:repeating-radial-gradient(circle at 50% 50%,#7c9ad8 0 2px,transparent 2px 7px)}
-.t-adire i:nth-child(5){background-color:#e0a32a;background-image:repeating-linear-gradient(0deg,#3b1d0e 0 3px,transparent 3px 10px),repeating-linear-gradient(90deg,#3b1d0e 0 3px,transparent 3px 10px)}
-.t-adire i:nth-child(6){background-color:#1e2a6b;background-image:repeating-linear-gradient(-45deg,#c9d6ff 0 2px,transparent 2px 9px)}
-.t-adire i:nth-child(7){background-color:#7a2335;background-image:radial-gradient(circle at 25% 25%,#f4cf9c 4px,transparent 5px),radial-gradient(circle at 75% 75%,#f4cf9c 4px,transparent 5px)}
-.t-adire i:nth-child(8){background-color:#0f3d3a;background-image:linear-gradient(45deg,#d9b46b 12%,transparent 12% 88%,#d9b46b 88%)}
-.t-adire i:nth-child(odd){animation-delay:-3s}
-@keyframes swatch{0%,100%{background-position:0 0}50%{background-position:11px 11px;transform:scale(.96)}}
+.t-adire{background:#f1ebdf}
+.t-adire .rod{position:absolute;top:22px;left:8%;right:8%;height:9px;border-radius:5px;background:linear-gradient(#8a5a33,#3e2714);z-index:2}
+.t-adire .cl{position:absolute;top:26px;left:12%;right:12%;bottom:-10px;background-color:#16205a;background-image:radial-gradient(circle,rgba(236,228,210,.85) 0 3px,transparent 4px),radial-gradient(circle,transparent 0 9px,rgba(236,228,210,.6) 10px 11px,transparent 12px 15px,rgba(236,228,210,.45) 16px 17px,transparent 18px);background-size:44px 44px,44px 44px;transform-origin:top center;animation:billow 5s ease-in-out infinite}
+.t-adire .cl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35),transparent 12%,rgba(255,255,255,.12) 25%,transparent 38%,rgba(0,0,0,.3) 55%,transparent 70%,rgba(255,255,255,.1) 84%,rgba(0,0,0,.3));background-size:160% 100%;animation:folds 5s ease-in-out infinite}
+.t-adire .tg{position:absolute;right:16%;bottom:40px;background:#faf6ee;color:#121735;font:500 10px var(--mono);letter-spacing:.08em;padding:7px 10px;border-radius:2px;transform:rotate(-4deg);box-shadow:0 10px 18px -8px rgba(0,0,0,.5);z-index:3}
+@keyframes billow{50%{transform:skewX(-2deg) scaleY(.985)}}
+@keyframes folds{50%{background-position:100% 0}}
 
 .t-haven{background:linear-gradient(#ffd9a8,#ff9f7a 55%,#ef7b6a)}
 .t-haven .sun{position:absolute;width:70px;height:70px;border-radius:50%;background:#fff3d6;left:62%;top:30px;box-shadow:0 0 60px #fff3d6;animation:sun 8s ease-in-out infinite alternate}
 @keyframes sun{to{transform:translate(-60px,40px)}}
-.t-haven svg{position:absolute;left:0;bottom:0;width:100%;height:auto}
+.t-haven svg{position:absolute;left:0;bottom:0;width:100%;height:58%}
 .t-haven .pin{position:absolute;padding:6px 10px;border-radius:999px;background:#fff;color:#1b2430;font:700 11px var(--body);box-shadow:0 8px 20px -6px rgba(0,0,0,.4);animation:bob 3s ease-in-out infinite}
 .t-haven .pin:nth-of-type(2){animation-delay:-1.5s}
 @keyframes bob{50%{transform:translateY(-8px)}}
@@ -356,7 +334,7 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         <a href="#contact" class="btn magnetic">Book a free call</a>
       </div>
       <div class="stats">
-        <div class="stat"><b data-count="4">0</b><span>live demo builds</span></div>
+        <div class="stat"><b data-count="3">0</b><span>live demo builds</span></div>
         <div class="stat"><b data-count="100" data-suffix="%">0</b><span>mobile-first layouts</span></div>
         <div class="stat"><b data-count="6" data-prefix="2–">0</b><span>weeks typical delivery</span></div>
       </div>
@@ -380,21 +358,20 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
     </div>
     <div class="filters rv" role="tablist" aria-label="Filter demos">
       <button class="chip on" data-f="all">All builds</button>
-      <button class="chip" data-f="fintech">Fintech</button>
       <button class="chip" data-f="commerce">E-commerce</button>
       <button class="chip" data-f="realestate">Real estate</button>
       <button class="chip" data-f="saas">SaaS</button>
     </div>
     <div class="work" id="workGrid">
 
-      <article class="card wide rv" data-cat="fintech">
-        <div class="thumb t-pay"><div class="ph"><div class="bx"><div class="bal">TOTAL BALANCE</div><div class="amt">₦2,481,900</div><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="row"></div><div class="row"></div><div class="row"></div></div><div class="chipcard"></div></div>
+      <article class="card wide rv" data-cat="commerce">
+        <div class="thumb t-adire"><div class="rod"></div><div class="cl"></div><span class="tg">ONIKO · 13 DIPS</span></div>
         <div class="card-body">
-          <div class="card-top"><span class="tag">Fintech · Web app</span><span class="tag mono">01</span></div>
-          <h3>Paylane</h3>
-          <p>A banking dashboard with live balance charts, card controls, transfers and a spending breakdown.</p>
-          <div class="stack"><span>Dashboard UI</span><span>Charts</span><span>Transfers flow</span></div>
-          <div class="card-actions"><button class="btn primary" data-preview="demos/paylane.html" data-name="Paylane">Preview <span class="arr">→</span></button><a class="btn" href="demos/paylane.html">Open full screen ↗</a></div>
+          <div class="card-top"><span class="tag">E-commerce · Storefront</span><span class="tag mono">01</span></div>
+          <h3>Adire &amp; Co.</h3>
+          <p>A hand-dyed textile store with cloth that moves, a scroll-through dye process, a pattern designer, garment previews and a three-step checkout.</p>
+          <div class="stack"><span>Generative fabric</span><span>Pattern studio</span><span>Garment preview</span><span>Checkout</span></div>
+          <div class="card-actions"><button class="btn primary" data-preview="demos/adire.html" data-name="Adire &amp; Co.">Preview <span class="arr">→</span></button><a class="btn" href="demos/adire.html">Open full screen ↗</a></div>
         </div>
       </article>
 
@@ -408,24 +385,13 @@ footer{border-top:1px solid var(--line);padding-block:40px calc(40px + env(safe-
         </div>
       </article>
 
-      <article class="card rv" data-cat="commerce">
-        <div class="thumb t-adire"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="card-body">
-          <div class="card-top"><span class="tag">E-commerce · Storefront</span><span class="tag mono">03</span></div>
-          <h3>Adire &amp; Co.</h3>
-          <p>An online fabric store with filters, quick view, a working cart and checkout summary.</p>
-          <div class="stack"><span>Product grid</span><span>Cart drawer</span><span>Naira pricing</span></div>
-          <div class="card-actions"><button class="btn primary" data-preview="demos/adire.html" data-name="Adire &amp; Co.">Preview <span class="arr">→</span></button><a class="btn" href="demos/adire.html">Open full screen ↗</a></div>
-        </div>
-      </article>
-
-      <article class="card rv" data-cat="realestate">
+      <article class="card rv" data-cat="realestate" style="grid-column:span 6">
         <div class="thumb t-haven"><div class="sun"></div>
           <span class="pin" style="left:18%;top:38%">₦85M · Lekki</span><span class="pin" style="left:56%;top:58%">₦42M · Gwarinpa</span>
           <svg viewBox="0 0 600 180" preserveAspectRatio="none"><path fill="#7b3d4f" d="M0 120 L60 120 L60 70 L100 40 L140 70 L140 120 L190 120 L190 50 L260 50 L260 120 L300 120 L300 80 L350 30 L400 80 L400 120 L450 120 L450 60 L520 60 L520 120 L600 120 L600 180 L0 180Z"/><path fill="#4a2232" d="M0 150 L600 140 L600 180 L0 180Z"/><g fill="#ffd27a"><rect x="75" y="85" width="12" height="14"/><rect x="110" y="85" width="12" height="14"/><rect x="205" y="65" width="12" height="14"/><rect x="235" y="65" width="12" height="14"/><rect x="335" y="90" width="12" height="14"/><rect x="465" y="75" width="12" height="14"/><rect x="495" y="75" width="12" height="14"/></g></svg>
         </div>
         <div class="card-body">
-          <div class="card-top"><span class="tag">Real estate · Listings</span><span class="tag mono">04</span></div>
+          <div class="card-top"><span class="tag">Real estate · Listings</span><span class="tag mono">03</span></div>
           <h3>Haven Homes</h3>
           <p>Property search with filters, saved homes, a map view and a mortgage calculator.</p>
           <div class="stack"><span>Search &amp; filter</span><span>Map pins</span><span>Calculator</span></div>
